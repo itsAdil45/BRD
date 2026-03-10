@@ -15,6 +15,46 @@
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/not-found.js"
+    ],
+    "/antiques-auction/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/antiques-auction/page.js"
+    ],
+    "/car-auction/auction-sidebar/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/car-auction/auction-sidebar/page.js"
+    ],
+    "/car-auction/auction-grid/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/car-auction/auction-grid/page.js"
+    ],
+    "/car-auction/how-to-buy/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/car-auction/how-to-buy/page.js"
+    ],
+    "/car-auction/auction-details/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/car-auction/auction-details/page.js"
+    ],
+    "/car-auction/auction-details2/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/car-auction/auction-details2/page.js"
+    ],
+    "/car-auction/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/car-auction/page.js"
+    ],
+    "/auction-grid/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/auction-grid/page.js"
     ]
   }
 }

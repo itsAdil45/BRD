@@ -164,52 +164,11 @@ const Header2 = () => {
                 </div>
               </div>
               <ul className="menu-list">
-                <li
-                  className={`menu-item-has-children ${
-                    state.activeMenu === "home" ? "" : ""
-                  }`}
-                >
-                  <Link href="/" className="drop-down">
-                    Home
-                  </Link>
-                  <i
-                    className={`dropdown-icon ${
-                      state.activeMenu === "home" ? "bi bi-dash" : "bi bi-plus"
-                    }`}
-                    onClick={() => collapseMenu("home")}
-                  />
-                  <ul
-                    className={`sub-menu ${
-                      state.activeMenu === "home" ? "d-block" : ""
-                    }`}
-                  >
-                    <li>
-                      <Link href="/">Multipurpose 01</Link>
-                    </li>
-                    <li className="active">
-                      <Link href="/car-auction">Car Auction</Link>
-                    </li>
-                    <li>
-                      <Link href="/antiques-auction">Antiques Auction</Link>
-                    </li>
-                    <li>
-                      <Link href="/art-auction">Art Auction</Link>
-                    </li>
-                    <li>
-                      <Link href="/gadget-and-technology">
-                        Gadget &amp; Technology
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="/book-and-comic">Book &amp; Comic</Link>
-                    </li>
-                    <li>
-                      <Link href="/multipurpose2">Multipurpose 02</Link>
-                    </li>
-                  </ul>
+                <li className={` ${state.activeMenu === "home" ? "" : ""}`}>
+                  <Link href="/">Home</Link>
                 </li>
                 <li
-                  className={`menu-item-has-children ${
+                  className={`${
                     pathName === "/car-auction/auction-grid" &&
                     "/car-auction/auction-sidebar" &&
                     "/car-auction/auction-details" &&
@@ -218,17 +177,13 @@ const Header2 = () => {
                       : ""
                   }`}
                 >
-                  <Link href="/car-auction/auction-grid" className="drop-down">
-                    Auctions
+                  <Link
+                    href="/car-auction/auction-sidebar"
+                    className="drop-down"
+                  >
+                    Shop
                   </Link>
-                  <i
-                    className={`dropdown-icon ${
-                      state.activeMenu === "auction"
-                        ? "bi bi-dash"
-                        : "bi bi-plus"
-                    }`}
-                    onClick={() => collapseMenu("auction")}
-                  />
+                  {/* 
                   <ul
                     className={`sub-menu ${
                       state.activeMenu === "auction" ? "d-block" : ""
@@ -276,9 +231,9 @@ const Header2 = () => {
                         Auctions Details Style 02
                       </Link>
                     </li>
-                  </ul>
+                  </ul> */}
                 </li>
-                <li
+                {/* <li
                   className={`menu-item-has-children ${
                     pathName === "/car-auction/blog-grid" &&
                     "/car-auction/blog-standard" &&
@@ -327,7 +282,7 @@ const Header2 = () => {
                       <Link href="/car-auction/blog-details">Blog Details</Link>
                     </li>
                   </ul>
-                </li>
+                </li> */}
                 <li className="menu-item-has-children">
                   <a href="#" className="drop-down">
                     Pages

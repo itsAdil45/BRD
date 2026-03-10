@@ -1,3 +1,8 @@
 {
-  "/page": "app/page.js"
+  "/car-auction/auction-details2/page": "app/car-auction/auction-details2/page.js",
+  "/page": "app/page.js",
+  "/car-auction/page": "app/car-auction/page.js",
+  "/car-auction/auction-details/page": "app/car-auction/auction-details/page.js",
+  "/car-auction/auction-sidebar/page": "app/car-auction/auction-sidebar/page.js",
+  "/auction-grid/page": "app/auction-grid/page.js"
 }
