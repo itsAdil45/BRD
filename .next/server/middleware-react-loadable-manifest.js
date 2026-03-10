@@ -1,0 +1,1 @@
+self.__REACT_LOADABLE_MANIFEST="{\"customHooks\\\\useWow.js -> wowjs\":{\"id\":\"customHooks\\\\useWow.js -> wowjs\",\"files\":[\"static/chunks/_app-pages-browser_node_modules_wowjs_dist_wow_js.js\"]}}"
