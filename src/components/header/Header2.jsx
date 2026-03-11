@@ -177,10 +177,7 @@ const Header2 = () => {
                       : ""
                   }`}
                 >
-                  <Link
-                    href="/car-auction/auction-sidebar"
-                    className="drop-down"
-                  >
+                  <Link href="/shop" className="drop-down">
                     Shop
                   </Link>
                   {/* 

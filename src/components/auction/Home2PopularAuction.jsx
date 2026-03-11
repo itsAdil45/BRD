@@ -50,7 +50,7 @@ const Home2PopularAuction = () => {
     <>
       <div className="home2-popular-auction-section mb-110">
         <div className="container-fluid">
-          <div className="px-5">
+          <div class="px-0 px-lg-5">
             {/* <div className="home2-popular-auction-wrap"> */}
             {/* <div className="highest-bidding-wrap">
               <div className="highest-bidding">
@@ -67,7 +67,7 @@ const Home2PopularAuction = () => {
                   <div className="auction-card style-2 mb-25">
                     <div className="auction-card-content">
                       <h6>
-                        <Link href="/car-auction/auction-details2">
+                        <Link href="/product-detail">
                           Roar Auto Illuminating Your Drive.
                         </Link>
                       </h6>
@@ -95,7 +95,7 @@ const Home2PopularAuction = () => {
                   <div className="auction-card style-2 mb-25">
                     <div className="auction-card-content">
                       <h6>
-                        <Link href="/car-auction/auction-details2">
+                        <Link href="/product-detail">
                           Xus Drives Connecting You To The.
                         </Link>
                       </h6>
@@ -123,7 +123,7 @@ const Home2PopularAuction = () => {
                   <div className="auction-card style-2">
                     <div className="auction-card-content">
                       <h6>
-                        <Link href="/car-auction/auction-details2">
+                        <Link href="/product-detail">
                           Izon Motors Expanding Your Journey.
                         </Link>
                       </h6>
@@ -180,10 +180,7 @@ const Home2PopularAuction = () => {
                       <SwiperSlide className="swiper-slide">
                         <div className="auction-card style-2 mb-25">
                           <div className="auction-card-img-wrap">
-                            <Link
-                              href="/car-auction/auction-details2"
-                              className="card-img"
-                            >
+                            <Link href="/product-detail" className="card-img">
                               <img
                                 src="../assets/img/home2/home2-popular-auction-img1.jpg"
                                 alt=""
@@ -208,7 +205,7 @@ const Home2PopularAuction = () => {
                           </div>
                           <div className="auction-card-content">
                             <h6>
-                              <Link href="/car-auction/auction-details2">
+                              <Link href="/product-detail">
                                 Horizon Motors Expanding Your Journey.
                               </Link>
                             </h6>
@@ -217,10 +214,7 @@ const Home2PopularAuction = () => {
                                 <span>Current Bid at:</span>
                                 <strong>$2,898</strong>
                               </div>
-                              <Link
-                                href="/car-auction/auction-details2"
-                                className="bid-btn"
-                              >
+                              <Link href="/product-detail" className="bid-btn">
                                 Bid Now
                               </Link>
                             </div>
@@ -228,10 +222,7 @@ const Home2PopularAuction = () => {
                         </div>
                         <div className="auction-card style-2">
                           <div className="auction-card-img-wrap">
-                            <Link
-                              href="/car-auction/auction-details2"
-                              className="card-img"
-                            >
+                            <Link href="/product-detail" className="card-img">
                               <img
                                 src="../assets/img/home2/home2-popular-auction-img2.jpg"
                                 alt=""
@@ -256,7 +247,7 @@ const Home2PopularAuction = () => {
                           </div>
                           <div className="auction-card-content">
                             <h6>
-                              <Link href="/car-auction/auction-details2">
+                              <Link href="/product-detail">
                                 Prime Per for Empowering Your Drive.
                               </Link>
                             </h6>
@@ -265,10 +256,7 @@ const Home2PopularAuction = () => {
                                 <span>Current Bid at:</span>
                                 <strong>$6,648</strong>
                               </div>
-                              <Link
-                                href="/car-auction/auction-details2"
-                                className="bid-btn"
-                              >
+                              <Link href="/product-detail" className="bid-btn">
                                 Bid Now
                               </Link>
                             </div>
@@ -278,10 +266,7 @@ const Home2PopularAuction = () => {
                       <SwiperSlide className="swiper-slide">
                         <div className="auction-card style-2 mb-25">
                           <div className="auction-card-img-wrap">
-                            <Link
-                              href="/car-auction/auction-details2"
-                              className="card-img"
-                            >
+                            <Link href="/product-detail" className="card-img">
                               <img
                                 src="../assets/img/home2/home2-popular-auction-img3.jpg"
                                 alt=""
@@ -306,7 +291,7 @@ const Home2PopularAuction = () => {
                           </div>
                           <div className="auction-card-content">
                             <h6>
-                              <Link href="/car-auction/auction-details2">
+                              <Link href="/product-detail">
                                 Nexus Driveso Connecting You to the Future.
                               </Link>
                             </h6>
@@ -315,10 +300,7 @@ const Home2PopularAuction = () => {
                                 <span>Current Bid at:</span>
                                 <strong>$8,457</strong>
                               </div>
-                              <Link
-                                href="/car-auction/auction-details2"
-                                className="bid-btn"
-                              >
+                              <Link href="/product-detail" className="bid-btn">
                                 Bid Now
                               </Link>
                             </div>
@@ -326,10 +308,7 @@ const Home2PopularAuction = () => {
                         </div>
                         <div className="auction-card style-2">
                           <div className="auction-card-img-wrap">
-                            <Link
-                              href="/car-auction/auction-details2"
-                              className="card-img"
-                            >
+                            <Link href="/product-detail" className="card-img">
                               <img
                                 src="../assets/img/home2/home2-popular-auction-img4.jpg"
                                 alt=""
@@ -354,7 +333,7 @@ const Home2PopularAuction = () => {
                           </div>
                           <div className="auction-card-content">
                             <h6>
-                              <Link href="/car-auction/auction-details2">
+                              <Link href="/product-detail">
                                 Aurora Autosi Illuminating Your Driver.
                               </Link>
                             </h6>
@@ -363,10 +342,7 @@ const Home2PopularAuction = () => {
                                 <span>Current Bid at:</span>
                                 <strong>$5,274</strong>
                               </div>
-                              <Link
-                                href="/car-auction/auction-details2"
-                                className="bid-btn"
-                              >
+                              <Link href="/product-detail" className="bid-btn">
                                 Bid Now
                               </Link>
                             </div>
@@ -376,10 +352,7 @@ const Home2PopularAuction = () => {
                       <diSwiperSlidev className="swiper-slide">
                         <div className="auction-card style-2 mb-25">
                           <div className="auction-card-img-wrap">
-                            <Link
-                              href="/car-auction/auction-details2"
-                              className="card-img"
-                            >
+                            <Link href="/product-detail" className="card-img">
                               <img
                                 src="../assets/img/home2/home2-popular-auction-img5.jpg"
                                 alt=""
@@ -404,7 +377,7 @@ const Home2PopularAuction = () => {
                           </div>
                           <div className="auction-card-content">
                             <h6>
-                              <Link href="/car-auction/auction-details2">
+                              <Link href="/product-detail">
                                 Eclipse on Car Redefining the Road Ahead.
                               </Link>
                             </h6>
@@ -413,10 +386,7 @@ const Home2PopularAuction = () => {
                                 <span>Current Bid at:</span>
                                 <strong>$7,345</strong>
                               </div>
-                              <Link
-                                href="/car-auction/auction-details2"
-                                className="bid-btn"
-                              >
+                              <Link href="/product-detail" className="bid-btn">
                                 Bid Now
                               </Link>
                             </div>
@@ -424,10 +394,7 @@ const Home2PopularAuction = () => {
                         </div>
                         <div className="auction-card style-2">
                           <div className="auction-card-img-wrap">
-                            <Link
-                              href="/car-auction/auction-details2"
-                              className="card-img"
-                            >
+                            <Link href="/product-detail" className="card-img">
                               <img
                                 src="../assets/img/home2/home2-popular-auction-img6.jpg"
                                 alt=""
@@ -452,7 +419,7 @@ const Home2PopularAuction = () => {
                           </div>
                           <div className="auction-card-content">
                             <h6>
-                              <Link href="/car-auction/auction-details2">
+                              <Link href="/product-detail">
                                 Velocity Visions Precision Performance Meets.
                               </Link>
                             </h6>
@@ -461,10 +428,7 @@ const Home2PopularAuction = () => {
                                 <span>Current Bid at:</span>
                                 <strong>$4,648</strong>
                               </div>
-                              <Link
-                                href="/car-auction/auction-details2"
-                                className="bid-btn"
-                              >
+                              <Link href="/product-detail" className="bid-btn">
                                 Bid Now
                               </Link>
                             </div>
@@ -474,10 +438,7 @@ const Home2PopularAuction = () => {
                       <SwiperSlide className="swiper-slide">
                         <div className="auction-card style-2 mb-25">
                           <div className="auction-card-img-wrap">
-                            <Link
-                              href="/car-auction/auction-details2"
-                              className="card-img"
-                            >
+                            <Link href="/product-detail" className="card-img">
                               <img
                                 src="../assets/img/home2/home2-popular-auction-img1.jpg"
                                 alt=""
@@ -502,7 +463,7 @@ const Home2PopularAuction = () => {
                           </div>
                           <div className="auction-card-content">
                             <h6>
-                              <Link href="/car-auction/auction-details2">
+                              <Link href="/product-detail">
                                 Horizon Motors Expanding Your Journey.
                               </Link>
                             </h6>
@@ -511,10 +472,7 @@ const Home2PopularAuction = () => {
                                 <span>Current Bid at:</span>
                                 <strong>$2,898</strong>
                               </div>
-                              <Link
-                                href="/car-auction/auction-details2"
-                                className="bid-btn"
-                              >
+                              <Link href="/product-detail" className="bid-btn">
                                 Bid Now
                               </Link>
                             </div>
@@ -522,10 +480,7 @@ const Home2PopularAuction = () => {
                         </div>
                         <div className="auction-card style-2">
                           <div className="auction-card-img-wrap">
-                            <Link
-                              href="/car-auction/auction-details2"
-                              className="card-img"
-                            >
+                            <Link href="/product-detail" className="card-img">
                               <img
                                 src="../assets/img/home2/home2-popular-auction-img2.jpg"
                                 alt=""
@@ -550,7 +505,7 @@ const Home2PopularAuction = () => {
                           </div>
                           <div className="auction-card-content">
                             <h6>
-                              <Link href="/car-auction/auction-details2">
+                              <Link href="/product-detail">
                                 Prime Per for Empowering Your Drive.
                               </Link>
                             </h6>
@@ -559,10 +514,7 @@ const Home2PopularAuction = () => {
                                 <span>Current Bid at:</span>
                                 <strong>$6,648</strong>
                               </div>
-                              <Link
-                                href="/car-auction/auction-details2"
-                                className="bid-btn"
-                              >
+                              <Link href="/product-detail" className="bid-btn">
                                 Bid Now
                               </Link>
                             </div>
@@ -572,10 +524,7 @@ const Home2PopularAuction = () => {
                       <SwiperSlide className="swiper-slide">
                         <div className="auction-card style-2 mb-25">
                           <div className="auction-card-img-wrap">
-                            <Link
-                              href="/car-auction/auction-details2"
-                              className="card-img"
-                            >
+                            <Link href="/product-detail" className="card-img">
                               <img
                                 src="../assets/img/home2/home2-popular-auction-img3.jpg"
                                 alt=""
@@ -600,7 +549,7 @@ const Home2PopularAuction = () => {
                           </div>
                           <div className="auction-card-content">
                             <h6>
-                              <Link href="/car-auction/auction-details2">
+                              <Link href="/product-detail">
                                 Nexus Driveso Connecting You to the Future.
                               </Link>
                             </h6>
@@ -609,10 +558,7 @@ const Home2PopularAuction = () => {
                                 <span>Current Bid at:</span>
                                 <strong>$8,457</strong>
                               </div>
-                              <Link
-                                href="/car-auction/auction-details2"
-                                className="bid-btn"
-                              >
+                              <Link href="/product-detail" className="bid-btn">
                                 Bid Now
                               </Link>
                             </div>
@@ -620,10 +566,7 @@ const Home2PopularAuction = () => {
                         </div>
                         <div className="auction-card style-2">
                           <div className="auction-card-img-wrap">
-                            <Link
-                              href="/car-auction/auction-details2"
-                              className="card-img"
-                            >
+                            <Link href="/product-detail" className="card-img">
                               <img
                                 src="../assets/img/home2/home2-popular-auction-img4.jpg"
                                 alt=""
@@ -648,7 +591,7 @@ const Home2PopularAuction = () => {
                           </div>
                           <div className="auction-card-content">
                             <h6>
-                              <Link href="/car-auction/auction-details2">
+                              <Link href="/product-detail">
                                 Aurora Autosi Illuminating Your Driver.
                               </Link>
                             </h6>
@@ -657,10 +600,7 @@ const Home2PopularAuction = () => {
                                 <span>Current Bid at:</span>
                                 <strong>$5,274</strong>
                               </div>
-                              <Link
-                                href="/car-auction/auction-details2"
-                                className="bid-btn"
-                              >
+                              <Link href="/product-detail" className="bid-btn">
                                 Bid Now
                               </Link>
                             </div>
@@ -670,10 +610,7 @@ const Home2PopularAuction = () => {
                       <SwiperSlide className="swiper-slide">
                         <div className="auction-card style-2 mb-25">
                           <div className="auction-card-img-wrap">
-                            <Link
-                              href="/car-auction/auction-details2"
-                              className="card-img"
-                            >
+                            <Link href="/product-detail" className="card-img">
                               <img
                                 src="../assets/img/home2/home2-popular-auction-img5.jpg"
                                 alt=""
@@ -698,7 +635,7 @@ const Home2PopularAuction = () => {
                           </div>
                           <div className="auction-card-content">
                             <h6>
-                              <Link href="/car-auction/auction-details2">
+                              <Link href="/product-detail">
                                 Eclipse on Car Redefining the Road Ahead.
                               </Link>
                             </h6>
@@ -707,10 +644,7 @@ const Home2PopularAuction = () => {
                                 <span>Current Bid at:</span>
                                 <strong>$7,345</strong>
                               </div>
-                              <Link
-                                href="/car-auction/auction-details2"
-                                className="bid-btn"
-                              >
+                              <Link href="/product-detail" className="bid-btn">
                                 Bid Now
                               </Link>
                             </div>
@@ -718,10 +652,7 @@ const Home2PopularAuction = () => {
                         </div>
                         <div className="auction-card style-2">
                           <div className="auction-card-img-wrap">
-                            <Link
-                              href="/car-auction/auction-details2"
-                              className="card-img"
-                            >
+                            <Link href="/product-detail" className="card-img">
                               <img
                                 src="../assets/img/home2/home2-popular-auction-img6.jpg"
                                 alt=""
@@ -746,7 +677,7 @@ const Home2PopularAuction = () => {
                           </div>
                           <div className="auction-card-content">
                             <h6>
-                              <Link href="/car-auction/auction-details2">
+                              <Link href="/product-detail">
                                 Velocity Visions Precision Performance Meets.
                               </Link>
                             </h6>
@@ -755,10 +686,7 @@ const Home2PopularAuction = () => {
                                 <span>Current Bid at:</span>
                                 <strong>$4,648</strong>
                               </div>
-                              <Link
-                                href="/car-auction/auction-details2"
-                                className="bid-btn"
-                              >
+                              <Link href="/product-detail" className="bid-btn">
                                 Bid Now
                               </Link>
                             </div>
