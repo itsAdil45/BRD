@@ -160,7 +160,7 @@ const Home2PopularAuction = () => {
                         Popular Auction <span>For You.</span>
                       </h2>
                     </div>
-                    <Link className="view-button" href="/auction-grid">
+                    <Link className="view-button" href="/shop">
                       View All Auction
                       <svg viewBox="0 0 13 20">
                         <polyline points="0.5 19.5 3 19.5 12.5 10 3 0.5" />

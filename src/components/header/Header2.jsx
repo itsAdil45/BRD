@@ -280,7 +280,7 @@ const Header2 = () => {
                     </li>
                   </ul>
                 </li> */}
-                <li className="menu-item-has-children">
+                {/* <li className="menu-item-has-children">
                   <a href="#" className="drop-down">
                     Pages
                   </a>
@@ -390,7 +390,7 @@ const Header2 = () => {
                       <Link href="/car-auction/error">Error</Link>
                     </li>
                   </ul>
-                </li>
+                </li> */}
                 <li
                   className={
                     pathName === "/car-auction/contact" ? "active" : ""

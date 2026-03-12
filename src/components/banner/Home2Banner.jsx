@@ -142,7 +142,7 @@ const Home2Banner = () => {
                       </Link>
                       <Link
                         className="primary-btn btn-hover white-bg two"
-                        href="/auction-grid"
+                        href="/shop"
                       >
                         View All Auction
                         <span style={{ top: "40.5px", left: "84.2344px" }} />
