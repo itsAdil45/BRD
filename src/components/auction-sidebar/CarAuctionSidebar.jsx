@@ -515,6 +515,46 @@ const CarAuctionSidebar = () => {
                               {item.btnText}
                             </Link>
                           </div>
+                          <table className="table total-table2">
+                            <tbody>
+                              <tr>
+                                <td>
+                                  <span>SKU</span>
+                                </td>
+                                <td>123ABC</td>
+                              </tr>
+                              <tr>
+                                <td>
+                                  <span>Category</span>
+                                </td>
+                                <td>Car</td>
+                              </tr>
+                              <tr>
+                                <td>
+                                  <span>Tags</span>
+                                </td>
+                                <td>Car, Digital Art, Book</td>
+                              </tr>
+                              <tr>
+                                <td>
+                                  <span>Weight</span>
+                                </td>
+                                <td>20 gm</td>
+                              </tr>
+                              <tr>
+                                <td>
+                                  <span>Dimensions</span>
+                                </td>
+                                <td>2 × 4 × 5 cm</td>
+                              </tr>
+                              <tr>
+                                <td>
+                                  <span>Brand</span>
+                                </td>
+                                <td>BMW </td>
+                              </tr>
+                            </tbody>
+                          </table>
                         </div>
                       </div>
                     </div>
