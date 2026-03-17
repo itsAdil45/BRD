@@ -1,6 +1,8 @@
 import Breadcrumb1 from "@/components/common/Breadcrumb1";
-import Footer from "@/components/footer/Footer";
+import Footer2 from "@/components/footer/Footer2";
 import InnerPageHeader1 from "@/components/header/InnerPageHeader1";
+import Header from "@/components/header/Header2";
+
 import Link from "next/link";
 import React from "react";
 export const metadata = {
@@ -11,7 +13,7 @@ export const metadata = {
 const DashbaordPage = () => {
   return (
     <>
-      <InnerPageHeader1 />
+      {/* <InnerPageHeader1 /> */}
       <Breadcrumb1 pagetitle={"Profile"} currentPage={"Profile"} />
       <div className="dashboard-section pt-110 mb-110">
         <div className="container">
@@ -59,7 +61,7 @@ const DashbaordPage = () => {
                         <path d="M13.908 10.6367C13.457 10.6367 13.0898 11.0039 13.0898 11.4549C13.0898 11.9059 13.457 12.273 13.908 12.273C14.359 12.273 14.7262 11.9059 14.7262 11.4549C14.7262 11.0039 14.3591 10.6367 13.908 10.6367Z" />
                       </g>
                     </svg>
-                    <h6>Payment</h6>
+                    <h6>Payments</h6>
                   </Link>
                 </li>
                 <li>
@@ -271,7 +273,6 @@ const DashbaordPage = () => {
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 };

@@ -11,6 +11,7 @@ import SwiperCore, {
 import Link from "next/link";
 import { useCountdownTimer } from "@/customHooks/useCountdownTimer";
 import HandleQuantity from "@/components/common/HandleQuantity";
+import OrderForm from "../order-form/orderform";
 SwiperCore.use([Autoplay, EffectFade, Navigation, Pagination]);
 
 const CarAuctionDetails2 = () => {
@@ -965,6 +966,7 @@ const CarAuctionDetails2 = () => {
           </div>
         </div>
       </div>
+      <OrderForm />
       <div className="related-aution-section mb-110">
         <div className="container">
           <div

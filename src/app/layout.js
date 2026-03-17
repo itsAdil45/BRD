@@ -10,7 +10,8 @@ import "../../public/assets/css/nice-select.css";
 import "../../public/assets/css/slick.css";
 import "../../public/assets/css/bootstrap.min.css";
 import "../../public/assets/css/style.css";
-
+import Footer from "@/components/footer/Footer2";
+import Header from "@/components/header/Header2";
 import ScrollTopBtn from "../components/common/ScrollTopBtn.jsx";
 import useWow from "@/customHooks/useWow";
 import Head from "next/head";
@@ -28,19 +29,23 @@ export default function RootLayout({ children }) {
       lang="en"
       className={`${playfair_display.variable} ${dmsans.variable}`}
     >
-        <head>
+      <head>
         <link
           rel="icon"
           href="/assets/img/fav-icon.svg"
           type="image/x-icon"
           sizes="16x16"
         />
-           <meta name="description" content="Your description here" />
-           <meta name="keywords" content="next.js, SEO, meta tags" />
-        <title>Probid- Multi Vendor Auction and Bidding Next js Template.</title>
+        <meta name="description" content="Your description here" />
+        <meta name="keywords" content="next.js, SEO, meta tags" />
+        <title>
+          Probid- Multi Vendor Auction and Bidding Next js Template.
+        </title>
       </head>
       <body>
+        <Header />
         {children} <ScrollTopBtn />
+        <Footer />
       </body>
     </html>
   );

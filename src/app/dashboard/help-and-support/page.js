@@ -1,5 +1,5 @@
 import Breadcrumb1 from "@/components/common/Breadcrumb1";
-import Footer from "@/components/footer/Footer";
+import Footer from "@/components/footer/Footer2";
 import InnerPageHeader1 from "@/components/header/InnerPageHeader1";
 import Link from "next/link";
 import React from "react";
@@ -11,7 +11,6 @@ export const metadata = {
 const helpAndSupport = () => {
   return (
     <>
-      <InnerPageHeader1 />
       <Breadcrumb1 pagetitle={"Profile"} currentPage={"Profile"} />
       <div className="dashboard-section pt-110 mb-110">
         <div className="container">
@@ -333,7 +332,6 @@ const helpAndSupport = () => {
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 };

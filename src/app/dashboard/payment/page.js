@@ -1,5 +1,5 @@
 import Breadcrumb1 from "@/components/common/Breadcrumb1";
-import Footer from "@/components/footer/Footer";
+import Footer from "@/components/footer/Footer2";
 import InnerPageHeader1 from "@/components/header/InnerPageHeader1";
 import Link from "next/link";
 import React from "react";
@@ -11,7 +11,6 @@ export const metadata = {
 const PaymentPage = () => {
   return (
     <>
-      <InnerPageHeader1 />
       <Breadcrumb1 pagetitle={"Payment"} currentPage={"Payment"} />
       <div
         className="modal fade add-payment-modal"
@@ -265,7 +264,6 @@ const PaymentPage = () => {
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 };

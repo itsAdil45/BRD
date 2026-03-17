@@ -56,7 +56,7 @@ const Header2 = () => {
   return (
     <div className="home2-logo-and-header-wrapper d-flex">
       <div className="home2-header-logo d-lg-flex d-none">
-        <Link href="/car-auction">
+        <Link href="/">
           <img src="/assets/img/logo-white.svg" alt="" />
         </Link>
       </div>
@@ -98,10 +98,10 @@ const Header2 = () => {
             <div className="topbar-right">
               <ul>
                 <li>
-                  <Link href="/car-auction/how-to-buy">HOW TO BID</Link>
+                  <Link href="/how-to-buy">HOW TO BID</Link>
                 </li>
                 <li>
-                  <Link href="/car-auction/how-to-sell">SELL YOUR ITEM</Link>
+                  <Link href="/how-to-sell">SELL YOUR ITEM</Link>
                 </li>
               </ul>
               <div className="language-area">
@@ -136,7 +136,7 @@ const Header2 = () => {
         </div>
         <header className="header-area style-2 d-flex flex-nowrap align-items-center justify-content-between">
           <div className="company-logo d-lg-none d-flex">
-            <Link href="/car-auction">
+            <Link href="/">
               <img
                 alt="image"
                 className="img-fluid"
@@ -158,7 +158,7 @@ const Header2 = () => {
             <div className={`main-menu ${isMenuOpen ? "show-menu" : ""}`}>
               <div className="mobile-logo-area d-lg-none d-flex justify-content-center">
                 <div className="mobile-logo-wrap">
-                  <Link href="/car-auction">
+                  <Link href="/">
                     <img alt="image" src="/assets/img/logo.svg" />
                   </Link>
                 </div>
@@ -440,7 +440,7 @@ const Header2 = () => {
                 </div>
               </form>
               <div className="btn-area d-lg-none d-flex">
-                <a href="#" className="login-btn btn-hover">
+                <a href="/dashboard" className="login-btn btn-hover">
                   <svg
                     width={15}
                     height={19}
@@ -487,7 +487,10 @@ const Header2 = () => {
                   </form>
                 </div>
               </div>
-              <a href="#" className="login-btn btn-hover d-lg-flex d-none">
+              <a
+                href="/dashboard"
+                className="login-btn btn-hover d-lg-flex d-none"
+              >
                 <i className="bi bi-person-circle" />
                 My Account
                 <span style={{ top: "40.5px", left: "84.2344px" }} />
@@ -505,6 +508,11 @@ const Header2 = () => {
           </div>
         </header>
       </div>
+      <style>{`
+      a{
+      text-decoration:none
+      }
+      `}</style>
     </div>
   );
 };

@@ -1,5 +1,3 @@
-import Footer2 from "@/components/footer/Footer2";
-import Header2 from "@/components/header/Header2";
 import Breadcrumb2 from "@/components/common/Breadcrumb2";
 import CarAuctionSidebar from "@/components/auction-sidebar/CarAuctionSidebar";
 export const metadata = {
@@ -11,10 +9,8 @@ export const metadata = {
 const AuctionSidebarPage = () => {
   return (
     <>
-      <Header2 />
       <Breadcrumb2 pagetitle="Shop" currentPage="Shop" />
       <CarAuctionSidebar />
-      <Footer2 />
     </>
   );
 };
