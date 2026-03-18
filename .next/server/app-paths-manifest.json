@@ -1,11 +1,5 @@
 {
   "/page": "app/page.js",
-  "/product-detail/page": "app/product-detail/page.js",
-  "/car-auction/contact/page": "app/car-auction/contact/page.js",
-  "/how-to-buy/page": "app/how-to-buy/page.js",
-  "/car-auction/how-to-buy/page": "app/car-auction/how-to-buy/page.js",
-  "/car-auction/how-to-sell/page": "app/car-auction/how-to-sell/page.js",
-  "/how-to-sell/page": "app/how-to-sell/page.js",
-  "/_not-found/page": "app/_not-found/page.js",
-  "/shop/page": "app/shop/page.js"
+  "/auth/login/page": "app/auth/login/page.js",
+  "/auth/signup/page": "app/auth/signup/page.js"
 }

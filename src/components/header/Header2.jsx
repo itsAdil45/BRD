@@ -98,6 +98,9 @@ const Header2 = () => {
             <div className="topbar-right">
               <ul>
                 <li>
+                  <Link href="/auth/login">Login</Link>
+                </li>
+                <li>
                   <Link href="/how-to-buy">HOW TO BID</Link>
                 </li>
                 <li>
