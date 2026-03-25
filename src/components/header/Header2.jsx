@@ -79,7 +79,7 @@ const Header2 = () => {
                   </a>
                 </li>
                 <li>
-                  <a href="#">
+                  <a href="/contact">
                     <svg
                       width={20}
                       height={20}
@@ -394,12 +394,8 @@ const Header2 = () => {
                     </li>
                   </ul>
                 </li> */}
-                <li
-                  className={
-                    pathName === "/car-auction/contact" ? "active" : ""
-                  }
-                >
-                  <Link href="/car-auction/contact" className="drop-down">
+                <li className={pathName === "/contact" ? "active" : ""}>
+                  <Link href="/contact" className="drop-down">
                     Contact
                   </Link>
                 </li>
@@ -419,7 +415,7 @@ const Header2 = () => {
                   </a>
                 </li>
                 <li>
-                  <a href="#">
+                  <a href="/contact">
                     <svg
                       width={20}
                       height={20}

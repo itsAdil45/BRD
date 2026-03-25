@@ -1,17 +1,15 @@
-import Breadcrumb1 from "@/components/common/Breadcrumb1";
-import Footer from "@/components/footer/Footer";
-import InnerPageHeader1 from "@/components/header/InnerPageHeader1";
+import Breadcrumb2 from "@/components/common/Breadcrumb2";
 import React from "react";
 export const metadata = {
   icons: {
     icon: "/assets/img/fav-icon.svg",
+    title: "Probid- Multi Vendor Auction and Bidding Next js Template.",
   },
 };
-const ContactPage = () => {
+const Contactpage = () => {
   return (
     <>
-      <InnerPageHeader1 />
-      <Breadcrumb1 pagetitle={"Contact us"} currentPage={"Contact us"} />
+      <Breadcrumb2 pagetitle="Contact Us" currentPage="Contact Us" />
       <div className="contact-page pt-110 mb-110">
         <div className="container">
           <div className="row g-lg-4 gy-5 align-items-center">
@@ -143,9 +141,8 @@ const ContactPage = () => {
           referrerPolicy="no-referrer-when-downgrade"
         />
       </div>
-      <Footer />
     </>
   );
 };
 
-export default ContactPage;
+export default Contactpage;

@@ -55,31 +55,25 @@ const Footer2 = () => {
                     <div className="menu-container">
                       <ul className="widget-list">
                         <li>
-                          <Link href="/car-auction/auction-grid">Mercedes</Link>
+                          <Link href="/ ">Mercedes</Link>
                         </li>
                         <li>
-                          <Link href="/car-auction/auction-grid">
-                            Toyota Camry
-                          </Link>
+                          <Link href="/ ">Toyota Camry</Link>
                         </li>
                         <li>
-                          <Link href="/car-auction/auction-grid">BMW</Link>
+                          <Link href="/ ">BMW</Link>
                         </li>
                         <li>
-                          <Link href="/car-auction/auction-grid">Tesla</Link>
+                          <Link href="/ ">Tesla</Link>
                         </li>
                         <li>
-                          <Link href="/car-auction/auction-grid">Hyundai</Link>
+                          <Link href="/ ">Hyundai</Link>
                         </li>
                         <li>
-                          <Link href="/car-auction/auction-grid">
-                            Nissan Rogue
-                          </Link>
+                          <Link href="/ ">Nissan Rogue</Link>
                         </li>
                         <li>
-                          <Link href="/car-auction/auction-grid">
-                            Rolls Royce
-                          </Link>
+                          <Link href="/ ">Rolls Royce</Link>
                         </li>
                       </ul>
                     </div>
@@ -93,23 +87,19 @@ const Footer2 = () => {
                     <div className="menu-container">
                       <ul className="widget-list">
                         <li>
-                          <Link href="/car-auction/how-to-buy">
-                            How to bid with us
-                          </Link>
+                          <Link href="/how-to-buy">How to bid with us</Link>
                         </li>
                         <li>
-                          <Link href="/car-auction/how-to-sell">
-                            How to sell with us
-                          </Link>
+                          <Link href="/how-to-sell">How to sell with us</Link>
                         </li>
                         <li>
-                          <Link href="/car-auction/about">About us</Link>
+                          <Link href="/about">About us</Link>
                         </li>
                         <li>
-                          <Link href="/car-auction/faq">F.A.Q</Link>
+                          <Link href="/faq">F.A.Q</Link>
                         </li>
                         <li>
-                          <a href="#">Our Brand</a>
+                          <a href="/categories">Our Brand</a>
                         </li>
                       </ul>
                     </div>

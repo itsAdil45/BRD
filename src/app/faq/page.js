@@ -1,17 +1,15 @@
-import Breadcrumb1 from "@/components/common/Breadcrumb1";
-import Footer from "@/components/footer/Footer";
-import InnerPageHeader1 from "@/components/header/InnerPageHeader1";
+import Breadcrumb2 from "@/components/common/Breadcrumb2";
 import React from "react";
 export const metadata = {
   icons: {
     icon: "/assets/img/fav-icon.svg",
+    title: "Probid- Multi Vendor Auction and Bidding Next js Template.",
   },
 };
 const FaqPage = () => {
   return (
     <>
-      <InnerPageHeader1 />
-      <Breadcrumb1 currentPage={"FAQ"} pagetitle={"FAQ"} />
+      <Breadcrumb2 currentPage="FAQ" pagetitle="FAQ" />
       <div className="faq-section pt-110 mb-110">
         <div className="container">
           <div
@@ -796,7 +794,6 @@ const FaqPage = () => {
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 };
