@@ -1,6 +1,4 @@
-import Breadcrumb1 from "@/components/common/Breadcrumb1";
-import Footer from "@/components/footer/Footer";
-import InnerPageHeader1 from "@/components/header/InnerPageHeader1";
+import Breadcrumb2 from "@/components/common/Breadcrumb2";
 import HowToSell from "@/components/how-to-sell/HowToSell";
 
 export const metadata = {
@@ -12,7 +10,7 @@ export const metadata = {
 const HowToSellPage = () => {
   return (
     <>
-      <Breadcrumb1 currentPage={"How To Sell"} pagetitle={"How To Sell"} />
+      <Breadcrumb2 currentPage={"How To Sell"} pagetitle={"How To Sell"} />
       <HowToSell />
     </>
   );

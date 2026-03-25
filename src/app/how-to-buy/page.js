@@ -1,4 +1,4 @@
-import Breadcrumb1 from "@/components/common/Breadcrumb1";
+import Breadcrumb2 from "@/components/common/Breadcrumb2";
 
 import HowTobuy from "@/components/how-to-buy/HowTobuy";
 
@@ -11,7 +11,7 @@ export const metadata = {
 const Home1AboutowToBuyPage = () => {
   return (
     <>
-      <Breadcrumb1 currentPage={"How to Bid"} pagetitle={"How to Bid"} />
+      <Breadcrumb2 currentPage={"How to Bid"} pagetitle={"How to Bid"} />
       <HowTobuy />
     </>
   );

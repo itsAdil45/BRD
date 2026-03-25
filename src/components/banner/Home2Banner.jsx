@@ -121,7 +121,7 @@ const Home2Banner = () => {
                       Select <span>our product</span> at our auction.
                     </h1>
                     <div className="button-area">
-                      <Link
+                      {/* <Link
                         className="primary-btn btn-hover two"
                         href="/auction-grid"
                       >
@@ -139,7 +139,7 @@ const Home2Banner = () => {
                           />
                         </svg>
                         <span style={{ top: "40.5px", left: "84.2344px" }} />
-                      </Link>
+                      </Link> */}
                       <Link
                         className="primary-btn btn-hover white-bg two"
                         href="/shop"

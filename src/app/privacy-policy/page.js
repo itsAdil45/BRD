@@ -1,14 +1,10 @@
-import Breadcrumb1 from "@/components/common/Breadcrumb1";
-import Footer from "@/components/footer/Footer";
-import InnerPageHeader1 from "@/components/header/InnerPageHeader1";
-import Link from "next/link";
+import Breadcrumb2 from "@/components/common/Breadcrumb2";
 import React from "react";
 
 const PrivacyPolicyPage = () => {
   return (
     <div>
-      <InnerPageHeader1 />
-      <Breadcrumb1
+      <Breadcrumb2
         pagetitle={"Privacy Policy"}
         currentPage={"Privacy Policy"}
       />
@@ -127,7 +123,6 @@ const PrivacyPolicyPage = () => {
           </div>
         </div>
       </div>
-      <Footer />
     </div>
   );
 };

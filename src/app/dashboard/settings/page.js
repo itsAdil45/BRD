@@ -1,4 +1,4 @@
-import Breadcrumb1 from "@/components/common/Breadcrumb1";
+import Breadcrumb2 from "@/components/common/Breadcrumb2";
 
 import Link from "next/link";
 import React from "react";
@@ -10,7 +10,7 @@ export const metadata = {
 const SettingsPage = () => {
   return (
     <div>
-      <Breadcrumb1 pagetitle={"Profile"} currentPage={"Profile"} />
+      <Breadcrumb2 pagetitle={"Profile"} currentPage={"Profile"} />
       <div className="dashboard-section pt-110 mb-110">
         <div className="container">
           <div className="dashboard-wrapper">

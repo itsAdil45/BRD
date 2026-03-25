@@ -21,7 +21,7 @@ const AboutPage = () => {
       <Home2ProcessSection />
       <Home2Faq />
       <Home2Testimonial />
-      <Home2Blog />
+      {/* <Home2Blog /> */}
     </>
   );
 };

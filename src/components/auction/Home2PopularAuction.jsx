@@ -50,7 +50,7 @@ const Home2PopularAuction = () => {
     <>
       <div className="home2-popular-auction-section mb-110">
         <div className="container-fluid">
-          <div class="px-0 px-lg-5">
+          <div className="px-0 px-lg-5">
             {/* <div className="home2-popular-auction-wrap"> */}
             {/* <div className="highest-bidding-wrap">
               <div className="highest-bidding">

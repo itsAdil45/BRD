@@ -10,8 +10,8 @@ import "../../public/assets/css/nice-select.css";
 import "../../public/assets/css/slick.css";
 import "../../public/assets/css/bootstrap.min.css";
 import "../../public/assets/css/style.css";
-import Footer from "@/components/footer/Footer2";
-import Header from "@/components/header/Header2";
+import Footer2 from "@/components/footer/Footer2";
+import Header2 from "@/components/header/Header2";
 import ScrollTopBtn from "../components/common/ScrollTopBtn.jsx";
 import useWow from "@/customHooks/useWow";
 import Head from "next/head";
@@ -43,9 +43,9 @@ export default function RootLayout({ children }) {
         </title>
       </head>
       <body>
-        <Header />
+        <Header2 />
         {children} <ScrollTopBtn />
-        <Footer />
+        <Footer2 />
       </body>
     </html>
   );

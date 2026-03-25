@@ -1,8 +1,0 @@
-{
-  "/how-to-buy/page": "app/how-to-buy/page.js",
-  "/page": "app/page.js",
-  "/contact/page": "app/contact/page.js",
-  "/car-auction/how-to-sell/page": "app/car-auction/how-to-sell/page.js",
-  "/categories/page": "app/categories/page.js",
-  "/faq/page": "app/faq/page.js"
-}

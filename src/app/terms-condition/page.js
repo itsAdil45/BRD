@@ -1,13 +1,11 @@
-import Breadcrumb1 from "@/components/common/Breadcrumb1";
-import Footer from "@/components/footer/Footer";
-import Header from "@/components/header/Header";
+import Breadcrumb2 from "@/components/common/Breadcrumb2";
+
 import React from "react";
 
 const TermsConditionPage = () => {
   return (
     <>
-      <Header />
-      <Breadcrumb1 currentPage={"Terms"} pagetitle={"Terms"} />
+      <Breadcrumb2 currentPage={"Terms"} pagetitle={"Terms"} />
       <div className="terms-and-conditions-page pt-110 mb-110">
         <div className="container">
           <div className="row">
@@ -117,7 +115,6 @@ const TermsConditionPage = () => {
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 };
