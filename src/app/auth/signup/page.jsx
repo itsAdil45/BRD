@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import AuthForm from "../AuthForm"; // Adjust path if needed
 export const metadata = {
   title: {
-    default: "Sign-up/Register – Juventa.ae",
+    default: "Sign-up/Register – BRD",
   },
   description:
     "Join now for quick checkout, saved cart items, order history, and a personalized shopping experience.",

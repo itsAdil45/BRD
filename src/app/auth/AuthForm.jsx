@@ -2,390 +2,1104 @@
 
 import { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import { themeColors } from "@/theme/themeColors";
+const DEMO_EMAIL = "user@example.com";
+const DEMO_PASSWORD = "Password1!";
 
-// Hardcoded credentials
-const HARDCODED_EMAIL = "user@example.com";
-const HARDCODED_PASSWORD = "password123";
+const isValidEmail = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+const isStrongPassword = (v) =>
+  v.length >= 8 && /[A-Z]/.test(v) && /[0-9]/.test(v) && /[^A-Za-z0-9]/.test(v);
+
+const COUNTRIES = [
+  "Afghanistan",
+  "Albania",
+  "Algeria",
+  "Argentina",
+  "Australia",
+];
 
 export default function AuthForm({ type }) {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const [form, setForm] = useState({
-    email: "",
-    password: "",
-    fname: "",
-    lname: "",
-    confirmPassword: "",
-    passwordConfirmation: "",
-  });
 
+  /* ── shared state ── */
+  const [accountType, setAccountType] = useState("individual"); // "individual" | "company"
   const [rememberMe, setRememberMe] = useState(true);
-  const [showForgotPassword, setShowForgotPassword] = useState(false);
+  const [showForgotPw, setShowForgotPw] = useState(false);
   const [resetToken, setResetToken] = useState("");
   const [resetEmail, setResetEmail] = useState("");
-  const [successMessage, setSuccessMessage] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
+  const [success, setSuccess] = useState("");
+  const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
+  const [showPw, setShowPw] = useState(false);
+  const [showConfirmPw, setShowConfirmPw] = useState(false);
+
+  /* ── form fields ── */
+  const [form, setForm] = useState({
+    // individual
+    fname: "",
+    lname: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+    phone: "",
+    country: "",
+    city: "",
+    address: "",
+    agreeTerms: false,
+    // company
+    companyName: "",
+    regNumber: "",
+    companyAddress: "",
+    companyCountry: "",
+    companyCity: "",
+    companyPhone: "",
+    contactFname: "",
+    contactLname: "",
+    contactEmail: "",
+    contactPassword: "",
+    companyAgreeTerms: false,
+    // reset
+    passwordConfirmation: "",
+  });
 
   useEffect(() => {
     if (type === "reset-password") {
       const token = searchParams.get("token");
       const email = searchParams.get("email");
-
       if (token && email) {
         setResetToken(token);
         setResetEmail(decodeURIComponent(email));
-        setForm((prev) => ({ ...prev, email: decodeURIComponent(email) }));
+        setForm((p) => ({ ...p, email: decodeURIComponent(email) }));
       }
     }
   }, [type, searchParams]);
 
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-    setErrorMessage("");
+  const set = (k, v) => {
+    setForm((p) => ({ ...p, [k]: v }));
+    setErrors((p) => ({ ...p, [k]: "" }));
+  };
+  const handle = (e) => {
+    const { name, value, type: t, checked } = e.target;
+    set(name, t === "checkbox" ? checked : value);
   };
 
-  const handleForgotPassword = (e) => {
-    e.preventDefault();
-
-    if (!form.email) {
-      setErrorMessage("Please enter your email address");
-      return;
-    }
-
-    setSuccessMessage(
-      "Password reset instructions have been sent to your email address.",
-    );
-    setShowForgotPassword(false);
+  /* ─── Validation ──────────────────────────────────────────────────── */
+  const validateLogin = () => {
+    const e = {};
+    if (!form.email) e.email = "Email is required.";
+    else if (!isValidEmail(form.email)) e.email = "Enter a valid email.";
+    if (!form.password) e.password = "Password is required.";
+    return e;
   };
 
-  const handleResetPassword = (e) => {
-    e.preventDefault();
+  const validateIndividual = () => {
+    const e = {};
+    if (!form.fname.trim()) e.fname = "First name is required.";
+    if (!form.lname.trim()) e.lname = "Last name is required.";
+    if (!form.email) e.email = "Email is required.";
+    else if (!isValidEmail(form.email)) e.email = "Enter a valid email.";
+    if (!form.password) e.password = "Password is required.";
+    else if (!isStrongPassword(form.password))
+      e.password =
+        "Min 8 chars, one uppercase, one digit, one special character.";
+    if (form.password !== form.confirmPassword)
+      e.confirmPassword = "Passwords do not match.";
+    if (!form.phone.trim()) e.phone = "Phone number is required.";
+    if (!form.country) e.country = "Country is required.";
+    if (!form.city.trim()) e.city = "City is required.";
+    if (!form.agreeTerms) e.agreeTerms = "You must agree to the terms.";
+    return e;
+  };
 
-    if (form.password !== form.passwordConfirmation) {
-      setErrorMessage("Passwords do not match");
-      return;
-    }
+  const validateCompany = () => {
+    const e = {};
+    if (!form.companyName.trim()) e.companyName = "Company name is required.";
+    if (!form.companyAddress.trim())
+      e.companyAddress = "Company address is required.";
+    if (!form.companyCountry) e.companyCountry = "Country is required.";
+    if (!form.companyCity.trim()) e.companyCity = "City is required.";
+    if (!form.companyPhone.trim()) e.companyPhone = "Phone is required.";
+    if (!form.contactFname.trim()) e.contactFname = "First name is required.";
+    if (!form.contactLname.trim()) e.contactLname = "Last name is required.";
+    if (!form.contactEmail) e.contactEmail = "Email is required.";
+    else if (!isValidEmail(form.contactEmail))
+      e.contactEmail = "Enter a valid email.";
+    if (!form.contactPassword) e.contactPassword = "Password is required.";
+    else if (!isStrongPassword(form.contactPassword))
+      e.contactPassword =
+        "Min 8 chars, one uppercase, one digit, one special character.";
+    if (!form.companyAgreeTerms)
+      e.companyAgreeTerms = "You must agree to the terms.";
+    return e;
+  };
 
-    if (form.password.length < 8) {
-      setErrorMessage("Password must be at least 8 characters long");
-      return;
-    }
+  const validateForgot = () => {
+    const e = {};
+    if (!form.email) e.email = "Email is required.";
+    else if (!isValidEmail(form.email)) e.email = "Enter a valid email.";
+    return e;
+  };
 
-    setSuccessMessage(
-      "Password has been reset successfully! You can now login with your new password.",
-    );
-    setTimeout(() => {
-      router.push("/auth/login");
-    }, 2000);
+  const validateReset = () => {
+    const e = {};
+    if (!form.password) e.password = "Password is required.";
+    else if (!isStrongPassword(form.password))
+      e.password =
+        "Min 8 chars, one uppercase, one digit, one special character.";
+    if (form.password !== form.passwordConfirmation)
+      e.passwordConfirmation = "Passwords do not match.";
+    return e;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setErrorMessage("");
+    setSuccess("");
+
+    if (type === "login" && showForgotPw) {
+      const errs = validateForgot();
+      if (Object.keys(errs).length) {
+        setErrors(errs);
+        return;
+      }
+      setSuccess("Reset instructions sent to your email.");
+      setShowForgotPw(false);
+      return;
+    }
 
     if (type === "forgot-password") {
-      return handleForgotPassword(e);
+      const errs = validateForgot();
+      if (Object.keys(errs).length) {
+        setErrors(errs);
+        return;
+      }
+      setSuccess("Reset instructions sent to your email.");
+      return;
     }
 
     if (type === "reset-password") {
-      return handleResetPassword(e);
-    }
-
-    if (type === "login" && showForgotPassword) {
-      return handleForgotPassword(e);
-    }
-
-    if (type === "login" && !showForgotPassword) {
-      setLoading(true);
-      try {
-        // Hardcoded credential check
-        if (
-          form.email === HARDCODED_EMAIL &&
-          form.password === HARDCODED_PASSWORD
-        ) {
-          setSuccessMessage("Login Successful!");
-          router.push("/");
-        } else {
-          setErrorMessage("Invalid Credentials!");
-        }
-      } catch (error) {
-        setErrorMessage("An error occurred during login");
-      } finally {
-        setLoading(false);
-      }
-    } else if (type === "signup") {
-      if (form.password !== form.confirmPassword) {
-        setErrorMessage("Passwords do not match!");
+      const errs = validateReset();
+      if (Object.keys(errs).length) {
+        setErrors(errs);
         return;
       }
+      setSuccess("Password reset! Redirecting to login…");
+      setTimeout(() => router.push("/auth/login"), 2000);
+      return;
+    }
 
-      // Simulate successful registration
-      setSuccessMessage("Registration successful! Please login.");
-      setTimeout(() => {
-        router.push("/auth/login");
-      }, 1500);
+    if (type === "login") {
+      const errs = validateLogin();
+      if (Object.keys(errs).length) {
+        setErrors(errs);
+        return;
+      }
+      setLoading(true);
+      await new Promise((r) => setTimeout(r, 600));
+      if (form.email === DEMO_EMAIL && form.password === DEMO_PASSWORD) {
+        setSuccess("Login successful!");
+        setTimeout(() => router.push("/"), 1500);
+      } else {
+        setErrors({ general: "Invalid email or password." });
+      }
+      setLoading(false);
+      return;
+    }
+
+    if (type === "signup") {
+      const errs =
+        accountType === "individual" ? validateIndividual() : validateCompany();
+      if (Object.keys(errs).length) {
+        setErrors(errs);
+        return;
+      }
+      setLoading(true);
+      await new Promise((r) => setTimeout(r, 800));
+      setSuccess("Account created! Redirecting to login…");
+      setTimeout(() => router.push("/auth/login"), 1800);
+      setLoading(false);
     }
   };
 
-  const getFormTitle = () => {
-    switch (type) {
-      case "login":
-        return showForgotPassword ? "Forgot Password" : "Login";
-      case "signup":
-        return "Sign Up";
-      case "forgot-password":
-        return "Forgot Password";
-      case "reset-password":
-        return "Reset Password";
-      default:
-        return "Authentication";
-    }
-  };
+  const title =
+    type === "login"
+      ? showForgotPw
+        ? "Forgot Password"
+        : "Welcome Back"
+      : type === "signup"
+        ? "Create Account"
+        : type === "forgot-password"
+          ? "Forgot Password"
+          : "Reset Password";
 
-  const getSubmitButtonText = () => {
-    if (loading) return "Processing...";
+  const btnLabel = loading
+    ? "Processing…"
+    : type === "login" && showForgotPw
+      ? "Send Reset Link"
+      : type === "login"
+        ? "Sign In"
+        : type === "signup"
+          ? "Create Account"
+          : type === "forgot-password"
+            ? "Send Reset Link"
+            : "Reset Password";
 
-    switch (type) {
-      case "login":
-        return showForgotPassword ? "Send Reset Instructions" : "Sign In";
-      case "signup":
-        return "Create Account";
-      case "forgot-password":
-        return "Send Reset Instructions";
-      case "reset-password":
-        return "Reset Password";
-      default:
-        return "Submit";
-    }
-  };
-
-  return (
-    <div className="container py-5" style={{ maxWidth: "400px" }}>
-      <h2 className="mb-4 text-center">{getFormTitle()}</h2>
-
-      {successMessage && (
-        <div className="alert alert-success mb-4" role="alert">
-          {successMessage}
-        </div>
-      )}
-
-      <div className="border p-4 rounded">
-        {/* Signup Fields */}
-        {type === "signup" && (
-          <>
-            <div className="mb-3">
-              <label className="form-label">First Name</label>
-              <input
-                type="text"
-                className="form-control"
-                name="fname"
-                value={form.fname}
-                onChange={handleChange}
-                required
-              />
-            </div>
-            <div className="mb-3">
-              <label className="form-label">Last Name</label>
-              <input
-                type="text"
-                className="form-control"
-                name="lname"
-                value={form.lname}
-                onChange={handleChange}
-                required
-              />
-            </div>
-          </>
-        )}
-
-        {/* Email Field */}
-        <div className="mb-3">
-          <label htmlFor="email" className="form-label">
-            Email address
-          </label>
-          <input
-            id="email"
-            type="email"
-            className="form-control"
-            name="email"
-            value={form.email}
-            onChange={handleChange}
-            disabled={type === "reset-password" && resetEmail}
-            required
-          />
-        </div>
-
-        {/* Login Password Field */}
-        {type === "login" && !showForgotPassword && (
-          <div className="mb-3">
-            <label htmlFor="password" className="form-label">
-              Password
-            </label>
-            <input
-              id="password"
-              type="password"
-              className="form-control"
-              name="password"
-              value={form.password}
-              onChange={handleChange}
-              required
-            />
-          </div>
-        )}
-
-        {/* Signup Password Fields */}
-        {type === "signup" && (
-          <>
-            <div className="mb-3">
-              <label className="form-label">Password</label>
-              <input
-                type="password"
-                className="form-control"
-                name="password"
-                value={form.password}
-                onChange={handleChange}
-                required
-              />
-            </div>
-            <div className="mb-3">
-              <label className="form-label">Confirm Password</label>
-              <input
-                type="password"
-                className="form-control"
-                name="confirmPassword"
-                value={form.confirmPassword}
-                onChange={handleChange}
-                required
-              />
-            </div>
-          </>
-        )}
-
-        {/* Reset Password Fields */}
-        {type === "reset-password" && (
-          <>
-            <div className="mb-3">
-              <label className="form-label">New Password</label>
-              <input
-                type="password"
-                className="form-control"
-                name="password"
-                value={form.password}
-                onChange={handleChange}
-                minLength="8"
-                required
-              />
-              <small className="form-text text-muted">
-                Password must be at least 8 characters long.
-              </small>
-            </div>
-            <div className="mb-3">
-              <label className="form-label">Confirm New Password</label>
-              <input
-                type="password"
-                className="form-control"
-                name="passwordConfirmation"
-                value={form.passwordConfirmation}
-                onChange={handleChange}
-                minLength="8"
-                required
-              />
-            </div>
-          </>
-        )}
-
-        {/* Remember Me */}
-        {type === "login" && !showForgotPassword && (
-          <div className="mb-3 form-check">
-            <input
-              type="checkbox"
-              className="form-check-input"
-              id="rememberMe"
-              checked={rememberMe}
-              onChange={(e) => setRememberMe(e.target.checked)}
-            />
-            <label className="form-check-label" htmlFor="rememberMe">
-              Remember me
-            </label>
-          </div>
-        )}
-
-        {/* Submit Button */}
-        <button
-          type="button"
-          className="btn btn-dark w-100"
-          disabled={loading}
-          onClick={handleSubmit}
-          data-testid="auth-submit-button"
-        >
-          {getSubmitButtonText()}
-        </button>
-      </div>
-
-      {/* Error Display */}
-      {errorMessage && (
-        <div className="alert alert-danger mt-3" role="alert">
-          {errorMessage}
-        </div>
-      )}
-
-      {/* Navigation Links */}
-      <div className="text-center mt-3">
-        {type === "login" && !showForgotPassword && (
-          <>
-            <p>
-              <button
-                type="button"
-                className="btn btn-link p-0"
-                onClick={() => setShowForgotPassword(true)}
-                style={{ textDecoration: "none" }}
-              >
-                Forgot your password?
-              </button>
-            </p>
-            <p>
-              Don&apos;t have an account? <a href="/auth/signup">Sign up</a>
-            </p>
-          </>
-        )}
-
-        {type === "login" && showForgotPassword && (
-          <p>
-            Remember your password?{" "}
-            <button
-              type="button"
-              className="btn btn-link p-0"
-              onClick={() => {
-                setShowForgotPassword(false);
-                setSuccessMessage("");
-                setErrorMessage("");
-              }}
-              style={{ textDecoration: "none" }}
-            >
-              Back to login
-            </button>
-          </p>
-        )}
-
-        {type === "signup" && (
-          <p>
-            Already have an account? <a href="/auth/login">Sign in</a>
-          </p>
-        )}
-
-        {type === "forgot-password" && (
-          <p>
-            Remember your password? <a href="/auth/login">Back to login</a>
-          </p>
-        )}
-
-        {type === "reset-password" && (
-          <p>
-            <a href="/auth/login">Back to login</a>
-          </p>
-        )}
-      </div>
+  const Field = ({
+    label,
+    name,
+    type: ft = "text",
+    value,
+    placeholder,
+    disabled,
+    small,
+    required,
+  }) => (
+    <div className="brd-field">
+      <label htmlFor={name}>
+        {label}
+        {required && <span>*</span>}
+      </label>
+      <input
+        id={name}
+        name={name}
+        type={ft}
+        value={value}
+        placeholder={placeholder || ""}
+        disabled={disabled}
+        onChange={handle}
+        className={errors[name] ? "brd-input brd-input--err" : "brd-input"}
+        autoComplete={ft === "password" ? "current-password" : "off"}
+      />
+      {small && <p className="brd-hint">{small}</p>}
+      {errors[name] && <p className="brd-err">{errors[name]}</p>}
     </div>
   );
+
+  const SelectField = ({ label, name, value, options, required }) => (
+    <div className="brd-field">
+      <label htmlFor={name}>
+        {label}
+        {required && <span>*</span>}
+      </label>
+      <select
+        id={name}
+        name={name}
+        value={value}
+        onChange={handle}
+        className={errors[name] ? "brd-input brd-input--err" : "brd-input"}
+      >
+        <option value="">— Select —</option>
+        {options.map((o) => (
+          <option key={o} value={o}>
+            {o}
+          </option>
+        ))}
+      </select>
+      {errors[name] && <p className="brd-err">{errors[name]}</p>}
+    </div>
+  );
+
+  const PwField = ({ label, name, value, show, toggleShow, small }) => (
+    <div className="brd-field">
+      <label htmlFor={name}>
+        {label}
+        <span>*</span>
+      </label>
+      <div className="brd-pw-wrap">
+        <input
+          id={name}
+          name={name}
+          type={show ? "text" : "password"}
+          value={value}
+          onChange={handle}
+          className={errors[name] ? "brd-input brd-input--err" : "brd-input"}
+          autoComplete="new-password"
+        />
+        <button
+          type="button"
+          className="brd-pw-toggle"
+          onClick={toggleShow}
+          tabIndex={-1}
+        >
+          {show ? "Hide" : "Show"}
+        </button>
+      </div>
+      {small && <p className="brd-hint">{small}</p>}
+      {errors[name] && <p className="brd-err">{errors[name]}</p>}
+    </div>
+  );
+
+  return (
+    <>
+      <style>{CSS}</style>
+
+      <div className="brd-page">
+        {/* ── Brand mark ── */}
+        <div className="brd-brand">
+          <span className="brd-logo">BRD</span>
+          <span className="brd-tagline">Marketplace</span>
+        </div>
+
+        <div className="brd-card">
+          <h1 className="brd-title">{title}</h1>
+
+          {/* ── Account type toggle (signup only) ── */}
+          {type === "signup" && (
+            <div className="brd-type-toggle">
+              <button
+                type="button"
+                className={
+                  accountType === "individual"
+                    ? "brd-toggle-btn active"
+                    : "brd-toggle-btn"
+                }
+                onClick={() => {
+                  setAccountType("individual");
+                  setErrors({});
+                }}
+              >
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
+                  <circle cx="12" cy="8" r="4" />
+                  <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
+                </svg>
+                Individual Buyer
+              </button>
+              <button
+                type="button"
+                className={
+                  accountType === "company"
+                    ? "brd-toggle-btn active"
+                    : "brd-toggle-btn"
+                }
+                onClick={() => {
+                  setAccountType("company");
+                  setErrors({});
+                }}
+              >
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
+                  <rect x="2" y="7" width="20" height="14" rx="2" />
+                  <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" />
+                </svg>
+                Company Buyer
+              </button>
+            </div>
+          )}
+
+          {success && (
+            <div className="brd-alert brd-alert--ok">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+              >
+                <path d="M9 12l2 2 4-4" />
+                <circle cx="12" cy="12" r="10" />
+              </svg>
+              {success}
+            </div>
+          )}
+          {errors.general && (
+            <div className="brd-alert brd-alert--err">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <path d="M12 8v4m0 4h.01" />
+              </svg>
+              {errors.general}
+            </div>
+          )}
+
+          <form onSubmit={handleSubmit} noValidate>
+            {/* ════════ LOGIN ════════ */}
+            {type === "login" && !showForgotPw && (
+              <>
+                <Field
+                  label="Email Address"
+                  name="email"
+                  type="email"
+                  value={form.email}
+                  required
+                />
+                <PwField
+                  label="Password"
+                  name="password"
+                  value={form.password}
+                  show={showPw}
+                  toggleShow={() => setShowPw(!showPw)}
+                />
+                <div className="brd-row-spread">
+                  <label className="brd-check">
+                    <input
+                      type="checkbox"
+                      checked={rememberMe}
+                      onChange={(e) => setRememberMe(e.target.checked)}
+                    />
+                    <span>Remember me</span>
+                  </label>
+                  <button
+                    type="button"
+                    className="brd-link"
+                    onClick={() => {
+                      setShowForgotPw(true);
+                      setErrors({});
+                      setSuccess("");
+                    }}
+                  >
+                    Forgot password?
+                  </button>
+                </div>
+              </>
+            )}
+
+            {/* ════════ FORGOT PW (inline + standalone) ════════ */}
+            {((type === "login" && showForgotPw) ||
+              type === "forgot-password") && (
+              <>
+                <p className="brd-sub">
+                  Enter your email and we'll send you a reset link.
+                </p>
+                <Field
+                  label="Email Address"
+                  name="email"
+                  type="email"
+                  value={form.email}
+                  required
+                />
+              </>
+            )}
+
+            {/* ════════ RESET PW ════════ */}
+            {type === "reset-password" && (
+              <>
+                <Field
+                  label="Email Address"
+                  name="email"
+                  type="email"
+                  value={form.email}
+                  disabled={!!resetEmail}
+                  required
+                />
+                <PwField
+                  label="New Password"
+                  name="password"
+                  value={form.password}
+                  show={showPw}
+                  toggleShow={() => setShowPw(!showPw)}
+                  small="Min 8 chars, one uppercase, one digit, one special character."
+                />
+                <PwField
+                  label="Confirm New Password"
+                  name="passwordConfirmation"
+                  value={form.passwordConfirmation}
+                  show={showConfirmPw}
+                  toggleShow={() => setShowConfirmPw(!showConfirmPw)}
+                />
+              </>
+            )}
+
+            {/* ════════ SIGNUP — INDIVIDUAL ════════ */}
+            {type === "signup" && accountType === "individual" && (
+              <>
+                <div className="brd-grid-2">
+                  <Field
+                    label="First Name"
+                    name="fname"
+                    value={form.fname}
+                    required
+                  />
+                  <Field
+                    label="Last Name"
+                    name="lname"
+                    value={form.lname}
+                    required
+                  />
+                </div>
+                <Field
+                  label="Email Address"
+                  name="email"
+                  type="email"
+                  value={form.email}
+                  required
+                />
+                <Field
+                  label="Phone Number"
+                  name="phone"
+                  type="tel"
+                  value={form.phone}
+                  placeholder="+92 300 1234567"
+                  required
+                />
+                <div className="brd-grid-2">
+                  <SelectField
+                    label="Country"
+                    name="country"
+                    value={form.country}
+                    options={COUNTRIES}
+                    required
+                  />
+                  <Field label="City" name="city" value={form.city} required />
+                </div>
+                <Field
+                  label="Address"
+                  name="address"
+                  value={form.address}
+                  placeholder="Street address (optional)"
+                />
+                <PwField
+                  label="Password"
+                  name="password"
+                  value={form.password}
+                  show={showPw}
+                  toggleShow={() => setShowPw(!showPw)}
+                  small="Min 8 chars, one uppercase, one digit, one special character."
+                />
+                <PwField
+                  label="Confirm Password"
+                  name="confirmPassword"
+                  value={form.confirmPassword}
+                  show={showConfirmPw}
+                  toggleShow={() => setShowConfirmPw(!showConfirmPw)}
+                />
+                <label className="brd-check brd-check--terms">
+                  <input
+                    type="checkbox"
+                    name="agreeTerms"
+                    checked={form.agreeTerms}
+                    onChange={handle}
+                  />
+                  <span>
+                    I agree to the{" "}
+                    <a href="/terms" className="brd-link-inline">
+                      Terms of Service
+                    </a>{" "}
+                    and{" "}
+                    <a href="/privacy" className="brd-link-inline">
+                      Privacy Policy
+                    </a>
+                  </span>
+                </label>
+                {errors.agreeTerms && (
+                  <p className="brd-err">{errors.agreeTerms}</p>
+                )}
+              </>
+            )}
+
+            {/* ════════ SIGNUP — COMPANY ════════ */}
+            {type === "signup" && accountType === "company" && (
+              <>
+                <div className="brd-section-label">Company Information</div>
+                <Field
+                  label="Company Name"
+                  name="companyName"
+                  value={form.companyName}
+                  required
+                />
+                <Field
+                  label="Registration Number"
+                  name="regNumber"
+                  value={form.regNumber}
+                  placeholder="Optional"
+                />
+                <Field
+                  label="Company Address"
+                  name="companyAddress"
+                  value={form.companyAddress}
+                  required
+                />
+                <div className="brd-grid-2">
+                  <SelectField
+                    label="Country"
+                    name="companyCountry"
+                    value={form.companyCountry}
+                    options={COUNTRIES}
+                    required
+                  />
+                  <Field
+                    label="City"
+                    name="companyCity"
+                    value={form.companyCity}
+                    required
+                  />
+                </div>
+                <Field
+                  label="Company Phone"
+                  name="companyPhone"
+                  type="tel"
+                  value={form.companyPhone}
+                  placeholder="+92 21 1234567"
+                  required
+                />
+
+                <div className="brd-divider" />
+                <div className="brd-section-label">Contact Person</div>
+                <div className="brd-grid-2">
+                  <Field
+                    label="First Name"
+                    name="contactFname"
+                    value={form.contactFname}
+                    required
+                  />
+                  <Field
+                    label="Last Name"
+                    name="contactLname"
+                    value={form.contactLname}
+                    required
+                  />
+                </div>
+                <Field
+                  label="Contact Email"
+                  name="contactEmail"
+                  type="email"
+                  value={form.contactEmail}
+                  required
+                />
+                <PwField
+                  label="Password"
+                  name="contactPassword"
+                  value={form.contactPassword}
+                  show={showPw}
+                  toggleShow={() => setShowPw(!showPw)}
+                  small="Min 8 chars, one uppercase, one digit, one special character."
+                />
+
+                <label className="brd-check brd-check--terms">
+                  <input
+                    type="checkbox"
+                    name="companyAgreeTerms"
+                    checked={form.companyAgreeTerms}
+                    onChange={handle}
+                  />
+                  <span>
+                    I agree to the{" "}
+                    <a href="/terms" className="brd-link-inline">
+                      Terms of Service
+                    </a>{" "}
+                    and{" "}
+                    <a href="/privacy" className="brd-link-inline">
+                      Privacy Policy
+                    </a>
+                  </span>
+                </label>
+                {errors.companyAgreeTerms && (
+                  <p className="brd-err">{errors.companyAgreeTerms}</p>
+                )}
+              </>
+            )}
+
+            <button
+              type="submit"
+              className="brd-btn login-btn btn-hover"
+              disabled={loading}
+              data-testid="auth-submit-button"
+            >
+              {loading ? (
+                <>
+                  <span className="brd-spinner" />
+                  Processing…
+                </>
+              ) : (
+                btnLabel
+              )}
+            </button>
+          </form>
+
+          {/* ── Nav links ── */}
+          <div className="brd-nav-links">
+            {type === "login" && !showForgotPw && (
+              <p>
+                Don't have an account?{" "}
+                <a href="/auth/signup" className="brd-link-inline">
+                  Sign up
+                </a>
+              </p>
+            )}
+            {type === "login" && showForgotPw && (
+              <p>
+                <button
+                  type="button"
+                  className="brd-link"
+                  onClick={() => {
+                    setShowForgotPw(false);
+                    setErrors({});
+                    setSuccess("");
+                  }}
+                >
+                  ← Back to login
+                </button>
+              </p>
+            )}
+            {type === "signup" && (
+              <p>
+                Already have an account?{" "}
+                <a href="/auth/login" className="brd-link-inline">
+                  Sign in
+                </a>
+              </p>
+            )}
+            {type === "forgot-password" && (
+              <p>
+                <a href="/auth/login" className="brd-link-inline">
+                  ← Back to login
+                </a>
+              </p>
+            )}
+            {type === "reset-password" && (
+              <p>
+                <a href="/auth/login" className="brd-link-inline">
+                  ← Back to login
+                </a>
+              </p>
+            )}
+          </div>
+        </div>
+      </div>
+    </>
+  );
 }
+
+const CSS = `
+
+  :root {
+    --ink: #0a0a0a;
+    --ink-light: #404040;
+    --ink-muted: #888888;
+    --surface: #f5f5f5;
+    --surface-2: #ebebeb;
+    --border: #e0e0e0;
+    --accent: ${themeColors.primary};
+    --accent-dark: #019a78;
+    --accent-light: rgba(2, 171, 134, 0.1);
+    --accent-ring: rgba(2, 171, 134, 0.2);
+    --err: #d93025;
+    --ok: ${themeColors.primary};
+    --radius: 10px;
+  }
+
+  .brd-page {
+    min-height: 100vh;
+    background: var(--surface);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 48px 16px 80px;
+    font-family: var(--font-body);
+    color: var(--ink);
+  }
+
+  .brd-brand {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 32px;
+  }
+  .brd-logo {
+    font-family: var(--font-serif);
+    font-weight: 700;
+    font-size: 1.9rem;
+    letter-spacing: .12em;
+    color: var(--ink);
+  }
+  .brd-tagline {
+    font-size: .75rem;
+    font-weight: 500;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+
+  .brd-card {
+    width: 100%;
+    max-width: 520px;
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 40px 40px 32px;
+    box-shadow: 0 4px 24px rgba(0,0,0,.07), 0 1px 4px rgba(0,0,0,.04);
+  }
+  @media (max-width: 560px) {
+    .brd-card { padding: 28px 20px 24px; }
+  }
+
+  .brd-verified-banner {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--accent-light);
+    border: 1px solid rgba(2, 171, 134, 0.3);
+    color: var(--accent);
+    font-size: .82rem;
+    font-weight: 600;
+    letter-spacing: .04em;
+    padding: 10px 14px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+  }
+
+  .brd-title {
+    font-family: var(--font-serif);
+    font-size: 1.65rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin: 0 0 24px;
+    letter-spacing: -.01em;
+  }
+
+  .brd-type-toggle {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 24px;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 4px;
+  }
+  .brd-toggle-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    padding: 10px 8px;
+    border: none;
+    border-radius: 7px;
+    background: transparent;
+    cursor: pointer;
+    font-family: var(--font-body);
+    font-size: .82rem;
+    font-weight: 500;
+    color: var(--ink-muted);
+    transition: all .18s;
+  }
+  .brd-toggle-btn.active {
+    background: #ffffff;
+    color: var(--ink);
+    box-shadow: 0 1px 6px rgba(0,0,0,.1);
+  }
+  .brd-toggle-btn.active svg { stroke: var(--accent); }
+
+  .brd-sub {
+    font-size: .88rem;
+    color: var(--ink-light);
+    margin: -4px 0 18px;
+    line-height: 1.5;
+  }
+
+  .brd-section-label {
+    font-size: .72rem;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 4px 0 14px;
+  }
+
+  .brd-divider {
+    border: none;
+    border-top: 1px dashed var(--border);
+    margin: 20px 0 18px;
+  }
+
+  .brd-field {
+    margin-bottom: 16px;
+  }
+  .brd-field label {
+    display: block;
+    font-size: .8rem;
+    font-weight: 600;
+    letter-spacing: .03em;
+    color: var(--ink);
+    margin-bottom: 5px;
+  }
+  .brd-field label span {
+    color: var(--accent);
+    margin-left: 2px;
+  }
+
+  .brd-input {
+    width: 100%;
+    padding: 10px 13px;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    background: #ffffff;
+    font-family: var(--font-body);
+    font-size: .88rem;
+    color: var(--ink);
+    outline: none;
+    transition: border-color .15s, box-shadow .15s;
+    box-sizing: border-box;
+  }
+  .brd-input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-ring);
+    background: #ffffff;
+  }
+  .brd-input--err { border-color: var(--err); }
+  .brd-input--err:focus { box-shadow: 0 0 0 3px rgba(217, 48, 37, 0.12); }
+  .brd-input:disabled { opacity: .5; cursor: not-allowed; background: var(--surface-2); }
+
+  select.brd-input { cursor: pointer; }
+
+  .brd-pw-wrap { position: relative; }
+  .brd-pw-wrap .brd-input { padding-right: 54px; }
+  .brd-pw-toggle {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-family: var(--font-body);
+    font-size: .75rem;
+    font-weight: 600;
+    color: var(--ink-muted);
+    letter-spacing: .04em;
+    padding: 4px;
+    transition: color .15s;
+  }
+  .brd-pw-toggle:hover { color: var(--accent); }
+
+  .brd-hint { font-size: .75rem; color: var(--ink-muted); margin: 4px 0 0; }
+  .brd-err  { font-size: .75rem; color: var(--err); margin: 4px 0 0; font-weight: 500; }
+
+  .brd-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  @media (max-width: 440px) { .brd-grid-2 { grid-template-columns: 1fr; } }
+
+  .brd-row-spread {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .brd-check {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-size: .83rem;
+    color: var(--ink-light);
+    user-select: none;
+  }
+  .brd-check input[type=checkbox] {
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+    flex-shrink: 0;
+    accent-color: var(--accent);
+  }
+  .brd-check--terms { margin: 16px 0 4px; align-items: flex-start; }
+  .brd-check--terms input { margin-top: 2px; }
+
+  .brd-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 13px;
+    margin-top: 24px;
+    background: var(--accent);
+    color: #ffffff;
+    border: none;
+    border-radius: var(--radius);
+    font-family: var(--font-body);
+    font-size: .9rem;
+    font-weight: 600;
+    letter-spacing: .04em;
+    cursor: pointer;
+    transition: background .18s, transform .1s, box-shadow .18s;
+  }
+  .brd-btn:hover:not(:disabled) {
+    background: var(--accent-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px rgba(2, 171, 134, 0.35);
+  }
+  .brd-btn:active:not(:disabled) { transform: translateY(0); box-shadow: none; }
+  .brd-btn:disabled { opacity: .6; cursor: not-allowed; }
+
+  .brd-spinner {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border: 2px solid rgba(255,255,255,.35);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: brd-spin .7s linear infinite;
+  }
+  @keyframes brd-spin { to { transform: rotate(360deg); } }
+
+  .brd-alert {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: .82rem;
+    font-weight: 500;
+    margin-bottom: 18px;
+  }
+  .brd-alert--ok  {
+    background: var(--accent-light);
+    border: 1px solid rgba(2, 171, 134, 0.3);
+    color: var(--accent-dark);
+  }
+  .brd-alert--err {
+    background: #fdf0ee;
+    border: 1px solid #f0b8b2;
+    color: var(--err);
+  }
+
+  .brd-link {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    font-family: var(--font-body);
+    font-size: .83rem;
+    font-weight: 600;
+    color: var(--accent);
+    text-decoration: none;
+    transition: color .15s;
+  }
+  .brd-link:hover { color: var(--accent-dark); text-decoration: underline; }
+
+  .brd-link-inline {
+    color: var(--accent);
+    font-weight: 600;
+    text-decoration: none;
+    transition: color .15s;
+  }
+  .brd-link-inline:hover { color: var(--accent-dark); text-decoration: underline; }
+
+  .brd-nav-links {
+    text-align: center;
+    margin-top: 20px;
+    font-size: .83rem;
+    color: var(--ink-muted);
+  }
+  .brd-nav-links p { margin: 6px 0; }
+`;

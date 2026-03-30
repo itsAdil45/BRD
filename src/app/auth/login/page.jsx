@@ -4,7 +4,7 @@ import { Suspense } from "react";
 import AuthForm from "../AuthForm"; // Adjust path if needed
 export const metadata = {
   title: {
-    default: "Sign-in/Login – Juventa.ae",
+    default: "Sign-in/Login – BRD",
   },
   description:
     "Login to view your cart or order status, track your delivery, manage returns, and many more.",
