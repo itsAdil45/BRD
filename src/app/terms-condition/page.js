@@ -19,7 +19,7 @@ const TermsConditionPage = () => {
             </div>
             <div className="col-lg-12 mb-70">
               <div className="terms-and-conditions">
-                <h3>Bidding Terms &amp; Condition of Probid</h3>
+                <h3>Bidding Terms &amp; Condition of CPEMS</h3>
                 <p>
                   Urna Aenean onewaryzo eleifend vitae tellus a facilisis. Nunc
                   posuere at augue eget porta. Inei odion goat tellus, dignissim
@@ -69,7 +69,7 @@ const TermsConditionPage = () => {
             </div>
             <div className="col-lg-12">
               <div className="terms-and-conditions">
-                <h3>Buying Auction Terms &amp; Condition of Probid</h3>
+                <h3>Buying Auction Terms &amp; Condition of CPEMS</h3>
                 <p>
                   Urna Aenean onewaryzo eleifend vitae tellus a facilisis. Nunc
                   posuere at augue eget porta. Inei odion goat tellus, dignissim

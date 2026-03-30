@@ -56,8 +56,12 @@ const Header2 = () => {
   return (
     <div className="home2-logo-and-header-wrapper d-flex">
       <div className="home2-header-logo d-lg-flex d-none">
-        <Link href="/">
-          <img src="/assets/img/logo-white.svg" alt="" />
+        <Link
+          href="/"
+          style={{ color: "white", fontWeight: "bolder", fontSize: "2rem" }}
+        >
+          CPEMS
+          {/* <img src="/assets/img/logo-white.svg" alt="" /> */}
         </Link>
       </div>
       <div className="header-topbar-area p-0 w-100">

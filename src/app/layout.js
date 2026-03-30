@@ -38,9 +38,7 @@ export default function RootLayout({ children }) {
         />
         <meta name="description" content="Your description here" />
         <meta name="keywords" content="next.js, SEO, meta tags" />
-        <title>
-          Probid- Multi Vendor Auction and Bidding Next js Template.
-        </title>
+        <title>CPEMS- Multi Vendor Auction and Bidding Platform</title>
       </head>
       <body>
         <Header2 />

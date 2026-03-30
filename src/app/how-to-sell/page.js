@@ -2,7 +2,7 @@ import Breadcrumb2 from "@/components/common/Breadcrumb2";
 import HowToSell from "@/components/how-to-sell/HowToSell";
 
 export const metadata = {
-  title: "Probid- Multi Vendor Auction and Bidding Next js Template.",
+  title: "CPEMS- Multi Vendor Auction and Bidding Platform",
   icons: {
     icon: "/assets/img/fav-icon.svg",
   },

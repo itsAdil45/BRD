@@ -10,7 +10,7 @@ import Home2LogoSection from "@/components/logo-section/Home2LogoSection";
 export const metadata = {
   icons: {
     icon: "/assets/img/fav-icon.svg",
-    title: "Probid- Multi Vendor Auction and Bidding Next js Template.",
+    title: "CPEMS- Multi Vendor Auction and Bidding Platform",
   },
 };
 export default function Home() {

@@ -7,7 +7,7 @@ import Home2ProcessSection from "@/components/process-section/Home2ProcessSectio
 import Home2Testimonial from "@/components/testimonial/Home2Testimonial";
 import React from "react";
 export const metadata = {
-  title: "Probid- Multi Vendor Auction and Bidding Next js Template.",
+  title: "CPEMS- Multi Vendor Auction and Bidding Platform",
   icons: {
     icon: "/assets/img/fav-icon.svg",
   },

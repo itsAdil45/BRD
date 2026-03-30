@@ -4,7 +4,7 @@ import React from "react";
 export const metadata = {
   icons: {
     icon: "/assets/img/fav-icon.svg",
-    title: "Probid- Multi Vendor Auction and Bidding Next js Template.",
+    title: "CPEMS- Multi Vendor Auction and Bidding Platform",
   },
 };
 const CategoryPage = () => {
