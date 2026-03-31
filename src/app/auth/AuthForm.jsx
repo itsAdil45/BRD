@@ -3,12 +3,15 @@
 import { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { themeColors } from "@/theme/themeColors";
-const DEMO_EMAIL = "user@example.com";
-const DEMO_PASSWORD = "Password1!";
-
-const isValidEmail = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
-const isStrongPassword = (v) =>
-  v.length >= 8 && /[A-Z]/.test(v) && /[0-9]/.test(v) && /[^A-Za-z0-9]/.test(v);
+import { signIn } from "next-auth/react";
+import { FormInputField } from "@/components/authForm-Inputs/FormInputField";
+import { FormSelectField } from "@/components/authForm-Inputs/FormSelectField";
+import { FormPwField } from "@/components/authForm-Inputs/FormPwField";
+import usePost from "@/customHooks/usePost";
+import {
+  isValidEmail,
+  isStrongPassword,
+} from "@/utils/validators/FormValidator";
 
 const COUNTRIES = [
   "Afghanistan",
@@ -22,8 +25,7 @@ export default function AuthForm({ type }) {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  /* ── shared state ── */
-  const [accountType, setAccountType] = useState("individual"); // "individual" | "company"
+  const [accountType, setAccountType] = useState("individual");
   const [rememberMe, setRememberMe] = useState(true);
   const [showForgotPw, setShowForgotPw] = useState(false);
   const [resetToken, setResetToken] = useState("");
@@ -33,7 +35,7 @@ export default function AuthForm({ type }) {
   const [loading, setLoading] = useState(false);
   const [showPw, setShowPw] = useState(false);
   const [showConfirmPw, setShowConfirmPw] = useState(false);
-
+  const { postData } = usePost();
   /* ── form fields ── */
   const [form, setForm] = useState({
     // individual
@@ -84,7 +86,6 @@ export default function AuthForm({ type }) {
     set(name, t === "checkbox" ? checked : value);
   };
 
-  /* ─── Validation ──────────────────────────────────────────────────── */
   const validateLogin = () => {
     const e = {};
     if (!form.email) e.email = "Email is required.";
@@ -151,7 +152,35 @@ export default function AuthForm({ type }) {
       e.passwordConfirmation = "Passwords do not match.";
     return e;
   };
+  const handleResetPassword = async () => {
+    if (form.password !== form.passwordConfirmation) {
+      toast.error("Passwords do not match");
+      return;
+    }
 
+    if (form.password.length < 8) {
+      toast.error("Password must be at least 8 characters long");
+      return;
+    }
+
+    const resetData = {
+      email: resetEmail || form.email,
+      password: form.password,
+      password_confirmation: form.passwordConfirmation,
+      token: resetToken,
+    };
+
+    const result = await postData("/reset-password", resetData, false);
+
+    if (result) {
+      setSuccess(
+        "Password has been reset successfully! You can now login with your new password.",
+      );
+      setTimeout(() => {
+        router.push("/auth/login");
+      }, 2000);
+    }
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSuccess("");
@@ -162,9 +191,7 @@ export default function AuthForm({ type }) {
         setErrors(errs);
         return;
       }
-      setSuccess("Reset instructions sent to your email.");
-      setShowForgotPw(false);
-      return;
+      return handleForgotPassword();
     }
 
     if (type === "forgot-password") {
@@ -173,8 +200,8 @@ export default function AuthForm({ type }) {
         setErrors(errs);
         return;
       }
-      setSuccess("Reset instructions sent to your email.");
-      return;
+
+      return handleForgotPassword();
     }
 
     if (type === "reset-password") {
@@ -183,9 +210,7 @@ export default function AuthForm({ type }) {
         setErrors(errs);
         return;
       }
-      setSuccess("Password reset! Redirecting to login…");
-      setTimeout(() => router.push("/auth/login"), 2000);
-      return;
+      return handleResetPassword();
     }
 
     if (type === "login") {
@@ -195,15 +220,26 @@ export default function AuthForm({ type }) {
         return;
       }
       setLoading(true);
-      await new Promise((r) => setTimeout(r, 600));
-      if (form.email === DEMO_EMAIL && form.password === DEMO_PASSWORD) {
-        setSuccess("Login successful!");
-        setTimeout(() => router.push("/"), 1500);
-      } else {
-        setErrors({ general: "Invalid email or password." });
+      try {
+        const res = await signIn("credentials", {
+          email: form.email,
+          password: form.password,
+          remember_me: rememberMe.toString(),
+          redirect: false,
+        });
+
+        if (res?.ok) {
+          console.log("Login Successfully!");
+          router.push("/");
+        } else {
+          console.log("Invalid Credentials!");
+        }
+      } catch (error) {
+        console.log("An error occurred during login");
+      } finally {
+        setLoading(false);
+        return;
       }
-      setLoading(false);
-      return;
     }
 
     if (type === "signup") {
@@ -220,7 +256,20 @@ export default function AuthForm({ type }) {
       setLoading(false);
     }
   };
+  const handleForgotPassword = async () => {
+    const result = await postData(
+      "/forgot-password",
+      {
+        email: form.email,
+      },
+      false,
+    );
 
+    if (result) {
+      setSuccess("Reset instructions sent to your email.");
+      // setShowForgotPassword(false);
+    }
+  };
   const title =
     type === "login"
       ? showForgotPw
@@ -243,91 +292,6 @@ export default function AuthForm({ type }) {
           : type === "forgot-password"
             ? "Send Reset Link"
             : "Reset Password";
-
-  const Field = ({
-    label,
-    name,
-    type: ft = "text",
-    value,
-    placeholder,
-    disabled,
-    small,
-    required,
-  }) => (
-    <div className="brd-field">
-      <label htmlFor={name}>
-        {label}
-        {required && <span>*</span>}
-      </label>
-      <input
-        id={name}
-        name={name}
-        type={ft}
-        value={value}
-        placeholder={placeholder || ""}
-        disabled={disabled}
-        onChange={handle}
-        className={errors[name] ? "brd-input brd-input--err" : "brd-input"}
-        autoComplete={ft === "password" ? "current-password" : "off"}
-      />
-      {small && <p className="brd-hint">{small}</p>}
-      {errors[name] && <p className="brd-err">{errors[name]}</p>}
-    </div>
-  );
-
-  const SelectField = ({ label, name, value, options, required }) => (
-    <div className="brd-field">
-      <label htmlFor={name}>
-        {label}
-        {required && <span>*</span>}
-      </label>
-      <select
-        id={name}
-        name={name}
-        value={value}
-        onChange={handle}
-        className={errors[name] ? "brd-input brd-input--err" : "brd-input"}
-      >
-        <option value="">— Select —</option>
-        {options.map((o) => (
-          <option key={o} value={o}>
-            {o}
-          </option>
-        ))}
-      </select>
-      {errors[name] && <p className="brd-err">{errors[name]}</p>}
-    </div>
-  );
-
-  const PwField = ({ label, name, value, show, toggleShow, small }) => (
-    <div className="brd-field">
-      <label htmlFor={name}>
-        {label}
-        <span>*</span>
-      </label>
-      <div className="brd-pw-wrap">
-        <input
-          id={name}
-          name={name}
-          type={show ? "text" : "password"}
-          value={value}
-          onChange={handle}
-          className={errors[name] ? "brd-input brd-input--err" : "brd-input"}
-          autoComplete="new-password"
-        />
-        <button
-          type="button"
-          className="brd-pw-toggle"
-          onClick={toggleShow}
-          tabIndex={-1}
-        >
-          {show ? "Hide" : "Show"}
-        </button>
-      </div>
-      {small && <p className="brd-hint">{small}</p>}
-      {errors[name] && <p className="brd-err">{errors[name]}</p>}
-    </div>
-  );
 
   return (
     <>
@@ -433,17 +397,20 @@ export default function AuthForm({ type }) {
           )}
 
           <form onSubmit={handleSubmit} noValidate>
-            {/* ════════ LOGIN ════════ */}
             {type === "login" && !showForgotPw && (
               <>
-                <Field
+                <FormInputField
                   label="Email Address"
                   name="email"
                   type="email"
                   value={form.email}
+                  errors={errors}
+                  handle={handle}
                   required
                 />
-                <PwField
+                <FormPwField
+                  errors={errors}
+                  handle={handle}
                   label="Password"
                   name="password"
                   value={form.password}
@@ -481,11 +448,13 @@ export default function AuthForm({ type }) {
                 <p className="brd-sub">
                   Enter your email and we'll send you a reset link.
                 </p>
-                <Field
+                <FormInputField
                   label="Email Address"
                   name="email"
                   type="email"
                   value={form.email}
+                  errors={errors}
+                  handle={handle}
                   required
                 />
               </>
@@ -494,15 +463,19 @@ export default function AuthForm({ type }) {
             {/* ════════ RESET PW ════════ */}
             {type === "reset-password" && (
               <>
-                <Field
+                <FormInputField
                   label="Email Address"
                   name="email"
                   type="email"
+                  errors={errors}
+                  handle={handle}
                   value={form.email}
                   disabled={!!resetEmail}
                   required
                 />
-                <PwField
+                <FormPwField
+                  errors={errors}
+                  handle={handle}
                   label="New Password"
                   name="password"
                   value={form.password}
@@ -510,7 +483,9 @@ export default function AuthForm({ type }) {
                   toggleShow={() => setShowPw(!showPw)}
                   small="Min 8 chars, one uppercase, one digit, one special character."
                 />
-                <PwField
+                <FormPwField
+                  errors={errors}
+                  handle={handle}
                   label="Confirm New Password"
                   name="passwordConfirmation"
                   value={form.passwordConfirmation}
@@ -524,51 +499,72 @@ export default function AuthForm({ type }) {
             {type === "signup" && accountType === "individual" && (
               <>
                 <div className="brd-grid-2">
-                  <Field
+                  <FormInputField
                     label="First Name"
                     name="fname"
+                    errors={errors}
+                    handle={handle}
                     value={form.fname}
                     required
                   />
-                  <Field
+                  <FormInputField
                     label="Last Name"
                     name="lname"
+                    errors={errors}
+                    handle={handle}
                     value={form.lname}
                     required
                   />
                 </div>
-                <Field
+                <FormInputField
                   label="Email Address"
                   name="email"
                   type="email"
+                  errors={errors}
+                  handle={handle}
                   value={form.email}
                   required
                 />
-                <Field
+                <FormInputField
                   label="Phone Number"
                   name="phone"
+                  errors={errors}
+                  handle={handle}
                   type="tel"
                   value={form.phone}
                   placeholder="+92 300 1234567"
                   required
                 />
                 <div className="brd-grid-2">
-                  <SelectField
+                  <FormSelectField
                     label="Country"
                     name="country"
+                    handle={handle}
+                    errors={errors}
                     value={form.country}
                     options={COUNTRIES}
                     required
                   />
-                  <Field label="City" name="city" value={form.city} required />
+                  <FormInputField
+                    label="City"
+                    name="city"
+                    value={form.city}
+                    required
+                    errors={errors}
+                    handle={handle}
+                  />
                 </div>
-                <Field
+                <FormInputField
                   label="Address"
                   name="address"
+                  errors={errors}
+                  handle={handle}
                   value={form.address}
                   placeholder="Street address (optional)"
                 />
-                <PwField
+                <FormPwField
+                  errors={errors}
+                  handle={handle}
                   label="Password"
                   name="password"
                   value={form.password}
@@ -576,7 +572,9 @@ export default function AuthForm({ type }) {
                   toggleShow={() => setShowPw(!showPw)}
                   small="Min 8 chars, one uppercase, one digit, one special character."
                 />
-                <PwField
+                <FormPwField
+                  errors={errors}
+                  handle={handle}
                   label="Confirm Password"
                   name="confirmPassword"
                   value={form.confirmPassword}
@@ -611,43 +609,55 @@ export default function AuthForm({ type }) {
             {type === "signup" && accountType === "company" && (
               <>
                 <div className="brd-section-label">Company Information</div>
-                <Field
+                <FormInputField
                   label="Company Name"
                   name="companyName"
+                  errors={errors}
+                  handle={handle}
                   value={form.companyName}
                   required
                 />
-                <Field
+                <FormInputField
                   label="Registration Number"
                   name="regNumber"
+                  errors={errors}
+                  handle={handle}
                   value={form.regNumber}
                   placeholder="Optional"
                 />
-                <Field
+                <FormInputField
                   label="Company Address"
                   name="companyAddress"
+                  errors={errors}
+                  handle={handle}
                   value={form.companyAddress}
                   required
                 />
                 <div className="brd-grid-2">
-                  <SelectField
+                  <FormSelectField
                     label="Country"
                     name="companyCountry"
+                    handle={handle}
+                    errors={errors}
                     value={form.companyCountry}
                     options={COUNTRIES}
                     required
                   />
-                  <Field
+                  <FormInputField
                     label="City"
                     name="companyCity"
+                    errors={errors}
+                    handle={handle}
                     value={form.companyCity}
                     required
                   />
                 </div>
-                <Field
+                <FormInputField
                   label="Company Phone"
                   name="companyPhone"
                   type="tel"
+                  errors={errors}
+                  handle={handle}
                   value={form.companyPhone}
                   placeholder="+92 21 1234567"
                   required
@@ -656,27 +666,35 @@ export default function AuthForm({ type }) {
                 <div className="brd-divider" />
                 <div className="brd-section-label">Contact Person</div>
                 <div className="brd-grid-2">
-                  <Field
+                  <FormInputField
                     label="First Name"
                     name="contactFname"
+                    errors={errors}
+                    handle={handle}
                     value={form.contactFname}
                     required
                   />
-                  <Field
+                  <FormInputField
                     label="Last Name"
                     name="contactLname"
+                    errors={errors}
+                    handle={handle}
                     value={form.contactLname}
                     required
                   />
                 </div>
-                <Field
+                <FormInputField
                   label="Contact Email"
                   name="contactEmail"
                   type="email"
+                  errors={errors}
+                  handle={handle}
                   value={form.contactEmail}
                   required
                 />
-                <PwField
+                <FormPwField
+                  errors={errors}
+                  handle={handle}
                   label="Password"
                   name="contactPassword"
                   value={form.contactPassword}

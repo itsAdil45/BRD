@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { useReducer, useState } from "react";
+import { useSession } from "next-auth/react";
 
 const initialState = {
   activeMenu: "",
@@ -41,6 +42,8 @@ const Header2 = () => {
   const [isMenuOpen, setMenuOpen] = useState(false);
   const [state, dispatch] = useReducer(reducer, initialState);
   const pathName = usePathname();
+  const { data: session, status } = useSession();
+
   const collapseMenu = (menu) => {
     dispatch({ type: "TOGGLE_MENU", menu });
   };
@@ -101,9 +104,9 @@ const Header2 = () => {
             </div>
             <div className="topbar-right">
               <ul>
-                <li>
+                {/* <li>
                   <Link href="/auth/login">Login/Register</Link>
-                </li>
+                </li> */}
                 <li>
                   <Link href="/how-to-buy">HOW TO BID</Link>
                 </li>
@@ -281,14 +284,53 @@ const Header2 = () => {
                   </form>
                 </div>
               </div>
-              <a
-                href="/dashboard"
-                className="login-btn btn-hover d-lg-flex d-none"
-              >
-                <i className="bi bi-person-circle" />
-                My Account
-                <span style={{ top: "40.5px", left: "84.2344px" }} />
-              </a>
+
+              <div className="login-btn btn-hover d-lg-flex d-none">
+                {status === "loading" ? (
+                  <div className="small">Loading...</div>
+                ) : session ? (
+                  <div className="">
+                    <a
+                      href="/dashboard"
+                      className=""
+                      style={{
+                        padding: "10px 0px",
+                        height: "15px",
+                        color: "white",
+                      }}
+                    >
+                      <i className="bi bi-person-circle me-2" />
+                      My Account
+                      <span style={{ top: "40.5px", left: "84.2344px" }} />
+                    </a>
+                    {/* <span>{session.user?.name}</span>
+                    <button
+                      // onClick={handleLogout}
+                      className="btn btn-link p-0 text-decoration-none text-danger"
+                      style={{ fontSize: "0.75rem" }}
+                      data-testid="auth-logout-button"
+                    >
+                      Logout
+                    </button> */}
+                  </div>
+                ) : (
+                  <div className="small">
+                    <Link
+                      href="/auth/login"
+                      className="fw-bold text-dark text-decoration-none me-2"
+                    >
+                      Sign In
+                    </Link>
+                    /
+                    <Link
+                      href="/auth/signup"
+                      className="fw-bold text-dark text-decoration-none ms-2"
+                    >
+                      Register
+                    </Link>
+                  </div>
+                )}
+              </div>
             </div>
             <div
               className={`sidebar-button mobile-menu-btn ${

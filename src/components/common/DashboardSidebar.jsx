@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { logout } from "../Logout";
+import { useRouter } from "next/navigation";
 
 const navItems = [
   {
@@ -121,7 +123,11 @@ const LogoutIcon = () => (
 
 const DashboardSidebar = () => {
   const pathname = usePathname();
-
+  const router = useRouter();
+  const handleLogout = async () => {
+    await logout();
+    router.push("/");
+  };
   const isActive = (href, exact = false) => {
     if (exact) return pathname === href;
     return pathname === href;
@@ -139,10 +145,10 @@ const DashboardSidebar = () => {
           </li>
         ))}
         <li>
-          <a href="#">
+          <button onClick={handleLogout}>
             <LogoutIcon />
             <h6>Logout</h6>
-          </a>
+          </button>
         </li>
       </ul>
     </div>

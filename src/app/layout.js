@@ -17,6 +17,7 @@ import useWow from "@/customHooks/useWow";
 import Head from "next/head";
 import { dmsans, playfair_display } from "@/fonts/font";
 import Meta from "@/components/common/Meta";
+import { SessionProvider } from "next-auth/react";
 
 export default function RootLayout({ children }) {
   // useHoverEffect(".btn-hover");
@@ -41,9 +42,11 @@ export default function RootLayout({ children }) {
         <title>CPEMS- Multi Vendor Auction and Bidding Platform</title>
       </head>
       <body>
-        <Header2 />
-        {children} <ScrollTopBtn />
-        <Footer2 />
+        <SessionProvider>
+          <Header2 />
+          {children} <ScrollTopBtn />
+          <Footer2 />
+        </SessionProvider>
       </body>
     </html>
   );
