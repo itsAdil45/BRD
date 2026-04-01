@@ -2,7 +2,7 @@
 import usePost from "@/customHooks/usePost";
 import React, { useState } from "react";
 import { isStrongPassword } from "@/utils/validators/FormValidator";
-
+import toast from "react-hot-toast";
 const ENDPOINT = "/change-password";
 
 export default function ChangePassword() {
@@ -61,6 +61,7 @@ export default function ChangePassword() {
 
     if (result) {
       setSuccess("Password changed successfully!");
+      toast.success("Password changed successfully!");
       setForm({ current_password: "", password: "", confirm_password: "" });
     }
   };

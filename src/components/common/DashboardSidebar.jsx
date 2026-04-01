@@ -145,9 +145,20 @@ const DashboardSidebar = () => {
           </li>
         ))}
         <li>
-          <button onClick={handleLogout}>
+          <button
+            onClick={handleLogout}
+            className="d-flex  gap-2 justify-content-center align-items-center  rounded-2  px-md-5 py-2"
+            style={{
+              background: "#283038",
+              border: "none",
+              color: "white",
+              fill: "white",
+              boxSizing: "border-box",
+              padding: "20px 12px",
+            }}
+          >
             <LogoutIcon />
-            <h6>Logout</h6>
+            <p className="mb-1 text-white d-none d-lg-block">Logout</p>
           </button>
         </li>
       </ul>

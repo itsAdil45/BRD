@@ -13,6 +13,7 @@ import "../../public/assets/css/style.css";
 import Footer2 from "@/components/footer/Footer2";
 import Header2 from "@/components/header/Header2";
 import ScrollTopBtn from "../components/common/ScrollTopBtn.jsx";
+import { Toaster } from "react-hot-toast";
 import useWow from "@/customHooks/useWow";
 import Head from "next/head";
 import { dmsans, playfair_display } from "@/fonts/font";
@@ -44,6 +45,15 @@ export default function RootLayout({ children }) {
       <body>
         <SessionProvider>
           <Header2 />
+          <Toaster
+            position="top-right"
+            toastOptions={{
+              style: {
+                background: "#333",
+                color: "#fff",
+              },
+            }}
+          />
           {children} <ScrollTopBtn />
           <Footer2 />
         </SessionProvider>

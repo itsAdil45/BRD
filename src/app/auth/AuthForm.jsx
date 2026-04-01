@@ -8,6 +8,7 @@ import { FormInputField } from "@/components/authForm-Inputs/FormInputField";
 import { FormSelectField } from "@/components/authForm-Inputs/FormSelectField";
 import { FormPwField } from "@/components/authForm-Inputs/FormPwField";
 import usePost from "@/customHooks/usePost";
+import toast from "react-hot-toast";
 import {
   isValidEmail,
   isStrongPassword,
@@ -173,6 +174,7 @@ export default function AuthForm({ type }) {
     const result = await postData("/reset-password", resetData, false);
 
     if (result) {
+      toast.success("Password has been reset successfully!");
       setSuccess(
         "Password has been reset successfully! You can now login with your new password.",
       );
@@ -229,13 +231,13 @@ export default function AuthForm({ type }) {
         });
 
         if (res?.ok) {
-          console.log("Login Successfully!");
+          toast.success("Login Successfully!");
           router.push("/");
         } else {
-          console.log("Invalid Credentials!");
+          toast.error("Invalid Credentials!");
         }
       } catch (error) {
-        console.log("An error occurred during login");
+        toast.error("An error occurred during login");
       } finally {
         setLoading(false);
         return;
@@ -266,6 +268,7 @@ export default function AuthForm({ type }) {
     );
 
     if (result) {
+      toast.success("Reset instructions sent to your email.");
       setSuccess("Reset instructions sent to your email.");
       // setShowForgotPassword(false);
     }
