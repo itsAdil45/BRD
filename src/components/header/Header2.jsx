@@ -311,7 +311,7 @@ const Header2 = () => {
               <div className="login-btn btn-hover d-lg-flex d-none">
                 {status === "loading" ? (
                   <div className="small">Loading...</div>
-                ) : session ? (
+                ) : session && session?.user?.email_verified === true ? (
                   <div className="">
                     <a
                       href="/dashboard"

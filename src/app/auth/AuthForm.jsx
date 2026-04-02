@@ -32,7 +32,7 @@ export default function AuthForm({ type }) {
   const [showConfirmPw, setShowConfirmPw] = useState(false);
   const [resendLoading, setResendLoading] = useState(false);
   const [resendCooldown, setResendCooldown] = useState(0);
-  const { postData } = usePost();
+  const { postData, error: postError } = usePost();
 
   const [verifyEmail, setVerifyEmail] = useState("");
   const [verifyToken, setVerifyToken] = useState("");
@@ -349,7 +349,7 @@ export default function AuthForm({ type }) {
 
           router.push("/auth/verify-email");
         } else {
-          toast.error("Registration failed");
+          toast.error(postError);
         }
       } catch (error) {
         console.error("Signup error:", error);

@@ -6,7 +6,7 @@ import toast from "react-hot-toast";
 const ENDPOINT = "/change-password";
 
 export default function ChangePassword() {
-  const { postData, loading } = usePost();
+  const { postData, loading, error: postError } = usePost();
 
   const [form, setForm] = useState({
     current_password: "",
@@ -59,10 +59,12 @@ export default function ChangePassword() {
       confirm_password: form.confirm_password,
     });
 
-    if (result) {
+    if (result?.status == true) {
       setSuccess("Password changed successfully!");
       toast.success("Password changed successfully!");
       setForm({ current_password: "", password: "", confirm_password: "" });
+    } else {
+      toast.error(postError || "Failed to change password");
     }
   };
 

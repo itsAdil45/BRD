@@ -1,11 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { signIn } from "next-auth/react";
 import { themeColors } from "@/theme/themeColors";
 import Cookies from "js-cookie";
-export default function EmailVerificationPage() {
+
+// Extract the main content into its own component
+function EmailVerificationContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -33,7 +35,7 @@ export default function EmailVerificationPage() {
         return;
       }
 
-      const backendUrl = `https://car-auctions.xeriotech.com/api/email/verify/${decodeURIComponent(path)}?expires=${expires}&signature=${signature}`;
+      const backendUrl = `${process.env.NEXT_PUBLIC_API_BASE_URL}/email/verify/${decodeURIComponent(path)}?expires=${expires}&signature=${signature}`;
 
       try {
         const res = await fetch(backendUrl, {
@@ -61,8 +63,9 @@ export default function EmailVerificationPage() {
           setMessage("Verification response missing user data.");
           return;
         }
+
         const signInRes = await signIn("credentials", {
-          token: regToken, // cookie token
+          token: regToken,
           user_json: JSON.stringify(user),
           redirect: false,
         });
@@ -173,6 +176,46 @@ export default function EmailVerificationPage() {
         </div>
       </div>
     </>
+  );
+}
+
+// Fallback shown while the component is loading
+function VerificationFallback() {
+  return (
+    <>
+      <style>{CSS}</style>
+      <div className="ev-page">
+        <div className="ev-brand">
+          <span className="ev-logo">BRD</span>
+          <span className="ev-tagline">Marketplace</span>
+        </div>
+        <div className="ev-card">
+          <div className="ev-icon ev-icon--spin">
+            <svg
+              width="40"
+              height="40"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.5"
+            >
+              <path d="M12 2a10 10 0 1 0 10 10" strokeLinecap="round" />
+            </svg>
+          </div>
+          <h1 className="ev-title">Verifying your email…</h1>
+          <p className="ev-sub">Please wait while we confirm your account.</p>
+        </div>
+      </div>
+    </>
+  );
+}
+
+// Default export wraps everything in Suspense
+export default function EmailVerificationPage() {
+  return (
+    <Suspense fallback={<VerificationFallback />}>
+      <EmailVerificationContent />
+    </Suspense>
   );
 }
 
