@@ -38,8 +38,8 @@ const navItems = [
     ),
   },
   {
-    href: "/dashboard/payment",
-    label: "Payment",
+    href: "/dashboard/Addresses",
+    label: "Addresses",
     icon: (
       <svg
         width={18}

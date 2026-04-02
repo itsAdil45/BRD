@@ -366,9 +366,11 @@ export default function AuthForm({ type }) {
       { email: form.email },
       false,
     );
-    if (result) {
+    if (result?.status == true) {
       toast.success("Reset instructions sent to your email.");
       setSuccess("Reset instructions sent to your email.");
+    } else {
+      toast.error(postError || "Failed to send reset instructions.");
     }
   };
 
