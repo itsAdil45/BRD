@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import AuthForm from "../AuthForm"; // Adjust path if needed
 export const metadata = {
   title: {
-    default: "Sign-up/Register – BRD",
+    default: "Sign-up/Register – CPEMS",
   },
   description:
     "Join now for quick checkout, saved cart items, order history, and a personalized shopping experience.",

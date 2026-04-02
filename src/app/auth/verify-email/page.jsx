@@ -3,10 +3,10 @@ import AuthForm from "../AuthForm"; // Adjust path if needed
 
 export const metadata = {
   title: {
-    default: "Verify Email – BRD",
+    default: "Verify Email – CPEMS",
   },
   description:
-    "Please verify your email address to complete your BRD Marketplace registration.",
+    "Please verify your email address to complete your CPEMS registration.",
 };
 
 function VerifyEmailContent() {
