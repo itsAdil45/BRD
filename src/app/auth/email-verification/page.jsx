@@ -95,7 +95,7 @@ function EmailVerificationContent() {
       <style>{CSS}</style>
       <div className="ev-page">
         <div className="ev-brand">
-          <span className="ev-logo">BRD</span>
+          <span className="ev-logo">CPEMS</span>
           <span className="ev-tagline">Marketplace</span>
         </div>
 
@@ -186,7 +186,7 @@ function VerificationFallback() {
       <style>{CSS}</style>
       <div className="ev-page">
         <div className="ev-brand">
-          <span className="ev-logo">BRD</span>
+          <span className="ev-logo">CPEMS</span>
           <span className="ev-tagline">Marketplace</span>
         </div>
         <div className="ev-card">

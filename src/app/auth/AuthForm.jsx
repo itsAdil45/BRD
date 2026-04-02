@@ -406,7 +406,7 @@ export default function AuthForm({ type }) {
       <div className="brd-page">
         {/* ── Brand mark ── */}
         <div className="brd-brand">
-          <span className="brd-logo">BRD</span>
+          <span className="brd-logo">CPEMS</span>
           <span className="brd-tagline">Marketplace</span>
         </div>
 
