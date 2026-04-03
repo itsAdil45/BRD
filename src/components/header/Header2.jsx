@@ -142,14 +142,58 @@ const Header2 = () => {
                 </ul>
               </div>
               {session?.user?.verified_badge === true && (
-                <img
-                  src="../check.png"
-                  alt="Verified"
-                  style={{ width: "30px", height: "30px", cursor: "pointer" }}
-                  data-bs-toggle="tooltip"
-                  data-bs-placement="bottom"
-                  title="Admin Appproved"
-                />
+                <span
+                  style={{ position: "relative", display: "inline-flex" }}
+                  onMouseEnter={(e) =>
+                    (e.currentTarget.querySelector(".tooltip").style.opacity =
+                      1)
+                  }
+                  onMouseLeave={(e) =>
+                    (e.currentTarget.querySelector(".tooltip").style.opacity =
+                      0)
+                  }
+                >
+                  <img
+                    src="../check.png"
+                    alt="Verified"
+                    style={{ width: "30px", height: "30px", cursor: "pointer" }}
+                  />
+                  <span
+                    className="tooltip"
+                    style={{
+                      opacity: 0,
+                      transition: "opacity 0.2s ease",
+                      position: "absolute",
+                      top: "calc(100% + 6px)",
+                      left: "50%",
+                      transform: "translateX(-50%)",
+                      backgroundColor: "#1a1a1a",
+                      color: "#fff",
+                      fontSize: "12px",
+                      fontWeight: 500,
+                      whiteSpace: "nowrap",
+                      padding: "4px 8px",
+                      borderRadius: "4px",
+                      pointerEvents: "none",
+                      zIndex: 10,
+                    }}
+                  >
+                    Admin Approved
+                    {/* small arrow */}
+                    <span
+                      style={{
+                        position: "absolute",
+                        bottom: "100%",
+                        left: "50%",
+                        transform: "translateX(-50%)",
+                        borderWidth: "4px",
+                        borderStyle: "solid",
+                        borderColor:
+                          "#1a1a1a transparent transparent transparent",
+                      }}
+                    />
+                  </span>
+                </span>
               )}
             </div>
           </div>
