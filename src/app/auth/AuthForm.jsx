@@ -281,7 +281,7 @@ export default function AuthForm({ type }) {
             router.push("/");
           }
         } else {
-          toast.error("Invalid Credentials!");
+          toast.error(postError || "Invalid email or password");
         }
       } catch (error) {
         toast.error("An error occurred during login");
@@ -340,7 +340,6 @@ export default function AuthForm({ type }) {
           const registrationToken = result?.data?.token;
           const registrationEmail =
             accountType === "individual" ? form.email : form.contactEmail;
-          console.log("api res ", registrationToken);
 
           if (registrationToken) {
             Cookies.set("reg_token", registrationToken);
@@ -349,7 +348,9 @@ export default function AuthForm({ type }) {
 
           router.push("/auth/verify-email");
         } else {
-          toast.error(postError);
+          toast.error(
+            postError || "Failed to create account. Please try again.",
+          );
         }
       } catch (error) {
         console.error("Signup error:", error);

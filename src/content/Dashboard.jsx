@@ -8,12 +8,6 @@ const DashboardContent = () => {
     <>
       <div className="dashboard-content-wrap">
         <div className="profile-info-wrap">
-          <div className="profile-img">
-            <img
-              src="/assets/img/inner-pages/dashboard-profile-img.png"
-              alt=""
-            />
-          </div>
           <div className="profile-content">
             <h4>Hi, {session?.user?.name}</h4>
             <p>

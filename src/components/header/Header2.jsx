@@ -3,6 +3,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { useReducer, useState } from "react";
 import { useSession } from "next-auth/react";
+import { useEffect } from "react";
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
 const initialState = {
   activeMenu: "",
@@ -43,7 +45,17 @@ const Header2 = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const pathName = usePathname();
   const { data: session, status } = useSession();
-
+  useEffect(() => {
+    const tooltipTriggerList = document.querySelectorAll(
+      '[data-bs-toggle="tooltip"]',
+    );
+    tooltipTriggerList.forEach((el) => {
+      new window.bootstrap.Tooltip(el, {
+        delay: { show: 0, hide: 0 },
+        animation: false,
+      });
+    });
+  }, []);
   const collapseMenu = (menu) => {
     dispatch({ type: "TOGGLE_MENU", menu });
   };
@@ -141,6 +153,16 @@ const Header2 = () => {
                   ))}
                 </ul>
               </div>
+              {session?.user?.verified_badge === true && (
+                <img
+                  src="../check.png"
+                  alt="Verified"
+                  style={{ width: "30px", height: "30px", cursor: "pointer" }}
+                  data-bs-toggle="tooltip"
+                  data-bs-placement="bottom"
+                  title="Admin Appproved"
+                />
+              )}
             </div>
           </div>
         </div>
@@ -273,6 +295,19 @@ const Header2 = () => {
                   </div>
                 )}
               </div>
+              {session?.user?.verified_badge === true && (
+                <div className="mt-3 d-flex d-sm-none align-items-center gap-2">
+                  <img
+                    src="../check.png"
+                    alt="Verified"
+                    style={{ width: "30px", height: "30px", cursor: "pointer" }}
+                    data-bs-toggle="tooltip"
+                    data-bs-placement="bottom"
+                    title="Admin Approved"
+                  />
+                  <span>Admin Approved</span>
+                </div>
+              )}
             </div>
             <div className="btn-area">
               <div className="search-bar d-xl-none d-lg-block d-none">
