@@ -4,7 +4,6 @@ import { usePathname } from "next/navigation";
 import React, { useReducer, useState } from "react";
 import { useSession } from "next-auth/react";
 import { useEffect } from "react";
-import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
 const initialState = {
   activeMenu: "",
