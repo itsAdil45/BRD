@@ -45,17 +45,6 @@ const Header2 = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const pathName = usePathname();
   const { data: session, status } = useSession();
-  useEffect(() => {
-    const tooltipTriggerList = document.querySelectorAll(
-      '[data-bs-toggle="tooltip"]',
-    );
-    tooltipTriggerList.forEach((el) => {
-      new window.bootstrap.Tooltip(el, {
-        delay: { show: 0, hide: 0 },
-        animation: false,
-      });
-    });
-  }, []);
   const collapseMenu = (menu) => {
     dispatch({ type: "TOGGLE_MENU", menu });
   };
