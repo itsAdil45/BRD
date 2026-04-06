@@ -60,7 +60,7 @@ const Home2Banner = () => {
                   className="banner-bg"
                   style={{
                     backgroundImage:
-                      "linear-gradient(180deg, rgba(11, 12, 12, 0.45) 0%, rgba(11, 12, 12, 0.45) 100%), url(../assets/img/home2/home2-banner-img1.jpg)",
+                      "linear-gradient(180deg, rgba(11, 12, 12, 0.45) 0%, rgba(11, 12, 12, 0.45) 100%), url(../banner.jpg)",
                   }}
                 ></div>
               </SwiperSlide>
@@ -69,7 +69,7 @@ const Home2Banner = () => {
                   className="banner-bg"
                   style={{
                     backgroundImage:
-                      "linear-gradient(180deg, rgba(11, 12, 12, 0.45) 0%, rgba(11, 12, 12, 0.45) 100%), url(../assets/img/home2/home2-banner-img2.jpg)",
+                      "linear-gradient(180deg, rgba(11, 12, 12, 0.45) 0%, rgba(11, 12, 12, 0.45) 100%), url(../banner1.jpg)",
                   }}
                 ></div>
               </SwiperSlide>
@@ -78,7 +78,7 @@ const Home2Banner = () => {
                   className="banner-bg"
                   style={{
                     backgroundImage:
-                      "linear-gradient(180deg, rgba(11, 12, 12, 0.45) 0%, rgba(11, 12, 12, 0.45) 100%), url(../assets/img/home2/home2-banner-img3.jpg)",
+                      "linear-gradient(180deg, rgba(11, 12, 12, 0.45) 0%, rgba(11, 12, 12, 0.45) 100%), url(../banner2.jpg)",
                   }}
                 ></div>
               </SwiperSlide>
@@ -87,7 +87,7 @@ const Home2Banner = () => {
                   className="banner-bg"
                   style={{
                     backgroundImage:
-                      "linear-gradient(180deg, rgba(11, 12, 12, 0.45) 0%, rgba(11, 12, 12, 0.45) 100%), url(../assets/img/home2/home2-banner-img4.jpg)",
+                      "linear-gradient(180deg, rgba(11, 12, 12, 0.45) 0%, rgba(11, 12, 12, 0.45) 100%), url(../banner.jpg)",
                   }}
                 ></div>
               </SwiperSlide>

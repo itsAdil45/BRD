@@ -125,10 +125,7 @@ const CarAuctionDetails2 = () => {
                       aria-controls="v-pills-img1"
                       aria-selected="true"
                     >
-                      <img
-                        src="/assets/img/inner-pages/auction-details2-img1.jpg"
-                        alt=""
-                      />
+                      <img src="../car1.jpg" alt="" />
                     </button>
                   </li>
                   <li className="nav-item" role="presentation">
@@ -142,10 +139,7 @@ const CarAuctionDetails2 = () => {
                       aria-controls="v-pills-img2"
                       aria-selected="false"
                     >
-                      <img
-                        src="/assets/img/inner-pages/auction-details2-img2.jpg"
-                        alt=""
-                      />
+                      <img src="../car1.jpg" alt="" />
                     </button>
                   </li>
                   <li className="nav-item" role="presentation">
@@ -159,10 +153,7 @@ const CarAuctionDetails2 = () => {
                       aria-controls="v-pills-img3"
                       aria-selected="false"
                     >
-                      <img
-                        src="/assets/img/inner-pages/auction-details2-img3.jpg"
-                        alt=""
-                      />
+                      <img src="../car2.jpg" alt="" />
                     </button>
                   </li>
                   <li className="nav-item" role="presentation">
@@ -176,10 +167,7 @@ const CarAuctionDetails2 = () => {
                       aria-controls="v-pills-img4"
                       aria-selected="false"
                     >
-                      <img
-                        src="/assets/img/inner-pages/auction-details2-img4.jpg"
-                        alt=""
-                      />
+                      <img src="../car_row.jpg" alt="" />
                     </button>
                   </li>
                   <li className="nav-item" role="presentation">
@@ -193,10 +181,7 @@ const CarAuctionDetails2 = () => {
                       aria-controls="v-pills-img5"
                       aria-selected="false"
                     >
-                      <img
-                        src="/assets/img/inner-pages/auction-details2-img5.jpg"
-                        alt=""
-                      />
+                      <img src="../car2.jpg" alt="" />
                     </button>
                   </li>
                 </ul>
@@ -210,10 +195,7 @@ const CarAuctionDetails2 = () => {
                     role="tabpanel"
                   >
                     <div className="auction-details-tab-img">
-                      <img
-                        src="/assets/img/inner-pages/auction-details2-img1.jpg"
-                        alt=""
-                      />
+                      <img src="../car1.jpg" alt="" />
                     </div>
                   </div>
                   <div
@@ -222,10 +204,7 @@ const CarAuctionDetails2 = () => {
                     role="tabpanel"
                   >
                     <div className="auction-details-tab-img">
-                      <img
-                        src="/assets/img/inner-pages/auction-details2-img2.jpg"
-                        alt=""
-                      />
+                      <img src="../car1.jpg" alt="" />
                     </div>
                   </div>
                   <div
@@ -235,10 +214,7 @@ const CarAuctionDetails2 = () => {
                     aria-labelledby="v-pills-img3-tab"
                   >
                     <div className="auction-details-tab-img">
-                      <img
-                        src="/assets/img/inner-pages/auction-details2-img3.jpg"
-                        alt=""
-                      />
+                      <img src="../car2.jpg" alt="" />
                     </div>
                   </div>
                   <div
@@ -248,10 +224,7 @@ const CarAuctionDetails2 = () => {
                     aria-labelledby="v-pills-img4-tab"
                   >
                     <div className="auction-details-tab-img">
-                      <img
-                        src="/assets/img/inner-pages/auction-details2-img4.jpg"
-                        alt=""
-                      />
+                      <img src="../car_row.jpg" alt="" />
                     </div>
                   </div>
                   <div
@@ -261,10 +234,7 @@ const CarAuctionDetails2 = () => {
                     aria-labelledby="v-pills-img5-tab"
                   >
                     <div className="auction-details-tab-img">
-                      <img
-                        src="/assets/img/inner-pages/auction-details2-img5.jpg"
-                        alt=""
-                      />
+                      <img src="../car1.jpg" alt="" />
                     </div>
                   </div>
                 </div>
@@ -506,10 +476,7 @@ const CarAuctionDetails2 = () => {
                     mi velit.
                   </p>
                   <div className="video-wrapper">
-                    <img
-                      src="/assets/img/inner-pages/auction-details-video-img.jpg"
-                      alt=""
-                    />
+                    <img src="../banner.jpg" alt="" />
                     <a
                       style={{ cursor: "pointer" }}
                       onClick={() => setOpen(true)}
@@ -1023,10 +990,7 @@ const CarAuctionDetails2 = () => {
                             href="/car-auction/auction-details"
                             className="card-img"
                           >
-                            <img
-                              src="../assets/img/home2/auction-img1.jpg"
-                              alt=""
-                            />
+                            <img src="../car_row.jpg" alt="" />
                           </Link>
                           <div className="batch">
                             <span className="live">
@@ -1123,10 +1087,7 @@ const CarAuctionDetails2 = () => {
                             href="/car-auction/auction-details"
                             className="card-img"
                           >
-                            <img
-                              src="../assets/img/home2/auction-img2.jpg"
-                              alt=""
-                            />
+                            <img src="../car_row.jpg" alt="" />
                           </Link>
                           <div className="batch">
                             <span className="live">
@@ -1223,10 +1184,7 @@ const CarAuctionDetails2 = () => {
                             href="/car-auction/auction-details"
                             className="card-img"
                           >
-                            <img
-                              src="../assets/img/home2/auction-img3.jpg"
-                              alt=""
-                            />
+                            <img src="../car1.jpg" alt="" />
                           </Link>
                           <div className="batch">
                             <span className="upcoming">
@@ -1326,10 +1284,7 @@ const CarAuctionDetails2 = () => {
                             href="/car-auction/auction-details"
                             className="card-img"
                           >
-                            <img
-                              src="../assets/img/home2/auction-img4.jpg"
-                              alt=""
-                            />
+                            <img src="../car1.jpg" alt="" />
                           </Link>
                           <div className="batch">
                             <span className="live">
@@ -1426,10 +1381,7 @@ const CarAuctionDetails2 = () => {
                             href="/car-auction/auction-details"
                             className="card-img"
                           >
-                            <img
-                              src="../assets/img/home1/auction-img1.jpg"
-                              alt=""
-                            />
+                            <img src="../car2.jpg" alt="" />
                           </Link>
                           <div className="batch">
                             <span className="live">
@@ -1526,10 +1478,7 @@ const CarAuctionDetails2 = () => {
                             href="/car-auction/auction-details"
                             className="card-img"
                           >
-                            <img
-                              src="../assets/img/home1/auction-img8.jpg"
-                              alt=""
-                            />
+                            <img src="../car1.jpg" alt="" />
                           </Link>
                           <div className="batch">
                             <span className="upcoming">
@@ -1629,10 +1578,7 @@ const CarAuctionDetails2 = () => {
                             href="/car-auction/auction-details"
                             className="card-img"
                           >
-                            <img
-                              src="../assets/img/home2/auction-img5.jpg"
-                              alt=""
-                            />
+                            <img src="../car1.jpg" alt="" />
                           </Link>
                           <div className="batch">
                             <span className="live">

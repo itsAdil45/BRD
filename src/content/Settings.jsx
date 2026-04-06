@@ -181,7 +181,7 @@ const Settings = () => {
                 {/* Date of birth */}
                 <div className="col-md-6 mb-30">
                   <div className="form-inner">
-                    <label>Date of Birth</label>
+                    <label>Date of Birth (Optional)</label>
                     <input
                       type="date"
                       name="date_of_birth"

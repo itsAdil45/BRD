@@ -181,10 +181,7 @@ const Home2PopularAuction = () => {
                         <div className="auction-card style-2 mb-25">
                           <div className="auction-card-img-wrap">
                             <Link href="/product-detail" className="card-img">
-                              <img
-                                src="../assets/img/home2/home2-popular-auction-img1.jpg"
-                                alt=""
-                              />
+                              <img src="../car_row.jpg" alt="" />
                             </Link>
                             <div className="batch">
                               <span className="live">
@@ -223,10 +220,7 @@ const Home2PopularAuction = () => {
                         <div className="auction-card style-2">
                           <div className="auction-card-img-wrap">
                             <Link href="/product-detail" className="card-img">
-                              <img
-                                src="../assets/img/home2/home2-popular-auction-img2.jpg"
-                                alt=""
-                              />
+                              <img src="../car_row.jpg" alt="" />
                             </Link>
                             <div className="batch">
                               <span className="live">
@@ -267,10 +261,7 @@ const Home2PopularAuction = () => {
                         <div className="auction-card style-2 mb-25">
                           <div className="auction-card-img-wrap">
                             <Link href="/product-detail" className="card-img">
-                              <img
-                                src="../assets/img/home2/home2-popular-auction-img3.jpg"
-                                alt=""
-                              />
+                              <img src="../car_row.jpg" alt="" />
                             </Link>
                             <div className="batch">
                               <span className="live">
@@ -309,10 +300,7 @@ const Home2PopularAuction = () => {
                         <div className="auction-card style-2">
                           <div className="auction-card-img-wrap">
                             <Link href="/product-detail" className="card-img">
-                              <img
-                                src="../assets/img/home2/home2-popular-auction-img4.jpg"
-                                alt=""
-                              />
+                              <img src="../car_row.jpg" alt="" />
                             </Link>
                             <div className="batch">
                               <span className="live">
@@ -353,10 +341,7 @@ const Home2PopularAuction = () => {
                         <div className="auction-card style-2 mb-25">
                           <div className="auction-card-img-wrap">
                             <Link href="/product-detail" className="card-img">
-                              <img
-                                src="../assets/img/home2/home2-popular-auction-img5.jpg"
-                                alt=""
-                              />
+                              <img src="../car_row.jpg" alt="" />
                             </Link>
                             <div className="batch">
                               <span className="live">
@@ -395,10 +380,7 @@ const Home2PopularAuction = () => {
                         <div className="auction-card style-2">
                           <div className="auction-card-img-wrap">
                             <Link href="/product-detail" className="card-img">
-                              <img
-                                src="../assets/img/home2/home2-popular-auction-img6.jpg"
-                                alt=""
-                              />
+                              <img src="../car_row.jpg" alt="" />
                             </Link>
                             <div className="batch">
                               <span className="live">
@@ -439,10 +421,7 @@ const Home2PopularAuction = () => {
                         <div className="auction-card style-2 mb-25">
                           <div className="auction-card-img-wrap">
                             <Link href="/product-detail" className="card-img">
-                              <img
-                                src="../assets/img/home2/home2-popular-auction-img1.jpg"
-                                alt=""
-                              />
+                              <img src="../car_row.jpg" alt="" />
                             </Link>
                             <div className="batch">
                               <span className="live">
@@ -481,10 +460,7 @@ const Home2PopularAuction = () => {
                         <div className="auction-card style-2">
                           <div className="auction-card-img-wrap">
                             <Link href="/product-detail" className="card-img">
-                              <img
-                                src="../assets/img/home2/home2-popular-auction-img2.jpg"
-                                alt=""
-                              />
+                              <img src="../car_row.jpg" alt="" />
                             </Link>
                             <div className="batch">
                               <span className="live">
@@ -525,10 +501,7 @@ const Home2PopularAuction = () => {
                         <div className="auction-card style-2 mb-25">
                           <div className="auction-card-img-wrap">
                             <Link href="/product-detail" className="card-img">
-                              <img
-                                src="../assets/img/home2/home2-popular-auction-img3.jpg"
-                                alt=""
-                              />
+                              <img src="../car_row.jpg" alt="" />
                             </Link>
                             <div className="batch">
                               <span className="live">
@@ -567,10 +540,7 @@ const Home2PopularAuction = () => {
                         <div className="auction-card style-2">
                           <div className="auction-card-img-wrap">
                             <Link href="/product-detail" className="card-img">
-                              <img
-                                src="../assets/img/home2/home2-popular-auction-img4.jpg"
-                                alt=""
-                              />
+                              <img src="../car_row.jpg" alt="" />
                             </Link>
                             <div className="batch">
                               <span className="live">
@@ -611,10 +581,7 @@ const Home2PopularAuction = () => {
                         <div className="auction-card style-2 mb-25">
                           <div className="auction-card-img-wrap">
                             <Link href="/product-detail" className="card-img">
-                              <img
-                                src="../assets/img/home2/home2-popular-auction-img5.jpg"
-                                alt=""
-                              />
+                              <img src="../car_row.jpg" alt="" />
                             </Link>
                             <div className="batch">
                               <span className="live">
@@ -653,10 +620,7 @@ const Home2PopularAuction = () => {
                         <div className="auction-card style-2">
                           <div className="auction-card-img-wrap">
                             <Link href="/product-detail" className="card-img">
-                              <img
-                                src="../assets/img/home2/home2-popular-auction-img6.jpg"
-                                alt=""
-                              />
+                              <img src="../car_row.jpg" alt="" />
                             </Link>
                             <div className="batch">
                               <span className="live">

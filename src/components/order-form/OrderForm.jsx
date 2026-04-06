@@ -198,11 +198,6 @@ const OrderForm = () => {
             >
               Inquiry
             </button>
-
-            <p className="text-muted small mt-3">
-              By sending an inquiry, you agree to SBI Motor Japan's Terms of Use
-              and Privacy Policy
-            </p>
           </form>
         </div>
       </div>

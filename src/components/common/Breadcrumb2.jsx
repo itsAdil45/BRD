@@ -7,7 +7,7 @@ const Breadcrumb2 = ({ pagetitle, currentPage }) => {
       className="breadcrumb-section two"
       style={{
         backgroundImage:
-          "linear-gradient(rgba(11, 12, 12, 0.6), rgba(11, 12, 12, 0.6)), url(/assets/img/inner-pages/breadcrumb-bg2.jpg)",
+          "linear-gradient(rgba(11, 12, 12, 0.6), rgba(11, 12, 12, 0.6)), url(../banner2.jpg)",
       }}
     >
       <div className="container">

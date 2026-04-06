@@ -106,10 +106,7 @@ const Home2latestAuction = () => {
                       <div className="auction-card style-2">
                         <div className="auction-card-img-wrap">
                           <Link href="/product-detail" className="card-img">
-                            <img
-                              src="../assets/img/home2/auction-img1.jpg"
-                              alt=""
-                            />
+                            <img src="../car2.jpg" alt="" />
                           </Link>
                           <div className="batch">
                             <span className="live">
@@ -200,10 +197,7 @@ const Home2latestAuction = () => {
                       <div className="auction-card style-2">
                         <div className="auction-card-img-wrap">
                           <Link href="/product-detail" className="card-img">
-                            <img
-                              src="../assets/img/home2/auction-img2.jpg"
-                              alt=""
-                            />
+                            <img src="../car1.jpg" alt="" />
                           </Link>
                           <div className="batch">
                             <span className="live">
@@ -294,10 +288,7 @@ const Home2latestAuction = () => {
                       <div className="auction-card style-2">
                         <div className="auction-card-img-wrap">
                           <Link href="/product-detail" className="card-img">
-                            <img
-                              src="../assets/img/home2/auction-img3.jpg"
-                              alt=""
-                            />
+                            <img src="../car2.jpg" alt="" />
                           </Link>
                           <div className="batch">
                             <span className="upcoming">
@@ -391,10 +382,7 @@ const Home2latestAuction = () => {
                       <div className="auction-card style-2">
                         <div className="auction-card-img-wrap">
                           <Link href="/product-detail" className="card-img">
-                            <img
-                              src="../assets/img/home2/auction-img4.jpg"
-                              alt=""
-                            />
+                            <img src="../car1.jpg" alt="" />
                           </Link>
                           <div className="batch">
                             <span className="live">
@@ -485,10 +473,7 @@ const Home2latestAuction = () => {
                       <div className="auction-card style-2">
                         <div className="auction-card-img-wrap">
                           <Link href="/product-detail" className="card-img">
-                            <img
-                              src="../assets/img/home1/auction-img1.jpg"
-                              alt=""
-                            />
+                            <img src="../car2.jpg" alt="" />
                           </Link>
                           <div className="batch">
                             <span className="live">
@@ -579,10 +564,7 @@ const Home2latestAuction = () => {
                       <div className="auction-card style-2">
                         <div className="auction-card-img-wrap">
                           <Link href="/product-detail" className="card-img">
-                            <img
-                              src="../assets/img/home1/auction-img8.jpg"
-                              alt=""
-                            />
+                            <img src="../car1.jpg" alt="" />
                           </Link>
                           <div className="batch">
                             <span className="upcoming">
@@ -676,10 +658,7 @@ const Home2latestAuction = () => {
                       <div className="auction-card style-2">
                         <div className="auction-card-img-wrap">
                           <Link href="/product-detail" className="card-img">
-                            <img
-                              src="../assets/img/home2/auction-img5.jpg"
-                              alt=""
-                            />
+                            <img src="../car1.jpg" alt="" />
                           </Link>
                           <div className="batch">
                             <span className="live">

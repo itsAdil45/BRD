@@ -10,7 +10,7 @@ import Slider from "@mui/material/Slider";
 const auctionItems = [
   {
     id: 1,
-    img: "../assets/img/home1/auction-img1.jpg",
+    img: "../car1.jpg",
     status: "live",
     countdown: "2024-10-10 12:00:00",
     title: "Zenith Auto Elevating Driving Your Experience.",
@@ -20,7 +20,7 @@ const auctionItems = [
   },
   {
     id: 2,
-    img: "../assets/img/home2/auction-img1.jpg",
+    img: "../car2.jpg",
     status: "live",
     countdown: "2024-10-10 12:00:00",
     title: "Velocity visions performance meets precision.",
@@ -30,7 +30,7 @@ const auctionItems = [
   },
   {
     id: 3,
-    img: "../assets/img/home2/auction-img2.jpg",
+    img: "../car_row.jpg",
     status: "live",
     countdown: "2024-10-12 12:00:00",
     title: "Nexus drives connecting your to the future.",
@@ -40,7 +40,7 @@ const auctionItems = [
   },
   {
     id: 4,
-    img: "../assets/img/home2/auction-img3.jpg",
+    img: "../car2.jpg",
     status: "upcoming",
     lotNo: "Lot # 25896742",
     countdown: "2024-10-23 12:00:00",
@@ -51,7 +51,7 @@ const auctionItems = [
   },
   {
     id: 5,
-    img: "../assets/img/home1/auction-img8.jpg",
+    img: "../car1.jpg",
     status: "live",
     countdown: "2024-09-15 12:00:00",
     title: "Titan Motors Built to Conquer Every Mile.",
@@ -61,7 +61,7 @@ const auctionItems = [
   },
   {
     id: 6,
-    img: "../assets/img/home2/auction-img4.jpg",
+    img: "../car_row.jpg",
     status: "live",
     countdown: "2024-10-20 12:00:00",
     title: "Eclipse cars redefining thus road ahead auction.",
@@ -71,7 +71,7 @@ const auctionItems = [
   },
   {
     id: 7,
-    img: "../assets/img/home1/auction-img1.jpg",
+    img: "../car_row.jpg",
     status: "live",
     countdown: "2024-10-14 12:00:00",
     title: "Zenith auto elevating driving your experience.",
@@ -81,7 +81,7 @@ const auctionItems = [
   },
   {
     id: 8,
-    img: "../assets/img/home2/auction-img5.jpg",
+    img: "../car2.jpg",
     status: "live",
     countdown: "2024-10-14 12:00:00",
     title: "Performance Empowering Your Drive Prime.",
@@ -91,7 +91,7 @@ const auctionItems = [
   },
   {
     id: 9,
-    img: "../assets/img/home2/upcoming-auction-img1.jpg",
+    img: "../car1.jpg",
     status: "upcoming",
     lotNo: "Lot # 25896742",
     countdown: "2024-10-23 12:00:00",
@@ -102,7 +102,7 @@ const auctionItems = [
   },
   {
     id: 10,
-    img: "../assets/img/home2/upcoming-auction-img2.jpg",
+    img: "../car2.jpg",
     status: "live",
     countdown: "2024-10-23 12:00:00",
     title: "Zenith autoesai elevating your driving experience.",
@@ -112,7 +112,7 @@ const auctionItems = [
   },
   {
     id: 11,
-    img: "../assets/img/home2/upcoming-auction-img3.jpg",
+    img: "../car_row.jpg",
     status: "upcoming",
     lotNo: "Lot # 25896742",
     countdown: "2024-10-23 12:00:00",
@@ -123,7 +123,7 @@ const auctionItems = [
   },
   {
     id: 12,
-    img: "../assets/img/home2/upcoming-auction-img4.jpg",
+    img: "../car2.jpg",
     status: "live",
     countdown: "2024-10-23 12:00:00",
     title: "Opp automotive reaching new heights of excellence.",
