@@ -14,10 +14,14 @@ export async function logout() {
         Authorization: `Bearer ${Cookies.get("reg_token")}`,
       },
     });
+
     toast.success("Logged out successfully!");
     await signOut({ redirect: false });
     Cookies.remove("reg_token");
+
+    return true; // ✅ success
   } catch (err) {
     console.error("Logout failed:", err);
+    return false; // ❌ failed
   }
 }

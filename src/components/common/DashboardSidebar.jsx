@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { logout } from "../Logout";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 const navItems = [
@@ -124,9 +125,18 @@ const LogoutIcon = () => (
 const DashboardSidebar = () => {
   const pathname = usePathname();
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
+
   const handleLogout = async () => {
-    await logout();
-    router.push("/");
+    setLoading(true); // start loading
+
+    const success = await logout(); // renamed variable
+
+    setLoading(false); // stop loading
+
+    if (success) {
+      router.push("/");
+    }
   };
   const isActive = (href, exact = false) => {
     if (exact) return pathname === href;
@@ -148,6 +158,7 @@ const DashboardSidebar = () => {
           <button
             onClick={handleLogout}
             className="d-flex  gap-2 justify-content-center align-items-center  rounded-2  px-md-5 py-2"
+            disabled={loading}
             style={{
               background: "#283038",
               border: "none",
@@ -158,7 +169,9 @@ const DashboardSidebar = () => {
             }}
           >
             <LogoutIcon />
-            <p className="mb-1 text-white d-none d-lg-block">Logout</p>
+            <p className="mb-1 text-white d-none d-lg-block">
+              {loading ? "Logging out..." : "Logout"}
+            </p>
           </button>
         </li>
       </ul>
