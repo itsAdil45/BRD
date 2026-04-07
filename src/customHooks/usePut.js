@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import useAxiosAuth from "./useAxiosAuth";
-
+import { signOut } from "next-auth/react";
+import { logout } from "@/components/Logout";
 export default function usePut() {
   const { axios, isReady, isAuthenticated } = useAxiosAuth();
   const [loading, setLoading] = useState(false);
@@ -35,6 +36,11 @@ export default function usePut() {
       });
       return res.data;
     } catch (err) {
+      const status = err?.response?.status;
+      if (status === 401) {
+        logout();
+        signOut({ callbackUrl: "/auth/login" });
+      }
       setError(err.response?.data?.message || err.message);
       throw err;
     } finally {

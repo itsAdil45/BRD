@@ -3,7 +3,8 @@
 
 import { useState } from "react";
 import useAxiosAuth from "./useAxiosAuth";
-
+import { signOut } from "next-auth/react";
+import { logout } from "@/components/Logout";
 const useDelete = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -34,6 +35,11 @@ const useDelete = () => {
       const response = await axios.delete(`${API_BASE_URL}${url}`, { headers });
       return response.data;
     } catch (err) {
+      const status = err?.response?.status;
+      if (status === 401) {
+        logout();
+        signOut({ callbackUrl: "/auth/login" });
+      }
       setError(err.response?.data?.message || "Something went wrong");
       return null;
     } finally {

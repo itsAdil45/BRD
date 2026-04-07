@@ -30,7 +30,7 @@ const handler = NextAuth({
             id: user.id,
             name: user.full_name,
             email: user.email,
-            backoffice_access: user.backoffice_access ?? false,
+            verified_badge: user.verified_badge ?? false,
             email_verified: user.email_verified ?? false,
             token: credentials.token,
             expires_at: null,

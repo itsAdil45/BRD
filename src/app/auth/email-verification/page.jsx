@@ -5,6 +5,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { signIn } from "next-auth/react";
 import { themeColors } from "@/theme/themeColors";
 import Cookies from "js-cookie";
+import toast from "react-hot-toast";
 
 // Extract the main content into its own component
 function EmailVerificationContent() {
@@ -61,6 +62,11 @@ function EmailVerificationContent() {
         if (!user) {
           setStatus("error");
           setMessage("Verification response missing user data.");
+          return;
+        }
+        if (user.status == "disabled") {
+          setStatus("error");
+          setMessage("Your account has been disabled. Please contact support.");
           return;
         }
 

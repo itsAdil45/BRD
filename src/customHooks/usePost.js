@@ -1,7 +1,8 @@
 // hooks/usePost.js
 import { useState } from "react";
 import useAxiosAuth from "./useAxiosAuth";
-
+import { signOut } from "next-auth/react";
+import { logout } from "@/components/Logout";
 const usePost = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -34,6 +35,11 @@ const usePost = () => {
       });
       return response.data;
     } catch (err) {
+      const status = err?.response?.status;
+      if (status === 401) {
+        logout();
+        signOut({ callbackUrl: "/auth/login" });
+      }
       setError(err.response?.data?.message || "Something went wrong");
       return null;
     } finally {

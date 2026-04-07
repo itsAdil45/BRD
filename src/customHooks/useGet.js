@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import useAxiosAuth from "./useAxiosAuth";
-
+import { signOut } from "next-auth/react";
+import { logout } from "@/components/Logout";
 export default function useGet(url, immediate = true, requireAuth = true) {
   const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
@@ -23,6 +24,10 @@ export default function useGet(url, immediate = true, requireAuth = true) {
       setData(res.data);
     } catch (err) {
       const status = err?.response?.status;
+      if (status === 401) {
+        logout();
+        signOut({ callbackUrl: "/auth/login" });
+      }
       setStatusCode(status);
       setError(err.response?.data || err.message);
     } finally {
