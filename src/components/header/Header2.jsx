@@ -282,14 +282,14 @@ const Header2 = () => {
                   </a>
                 </li>
               </ul>
-              <form className="d-lg-none d-flex">
+              {/* <form className="d-lg-none d-flex">
                 <div className="form-inner">
                   <input type="text" placeholder="Search your product..." />
                   <button className="search-btn">
                     <i className="bi bi-search" />
                   </button>
                 </div>
-              </form>
+              </form> */}
               <div className="btn-area d-lg-none d-flex">
                 {status === "loading" ? (
                   <div className="small">Loading...</div>
@@ -419,11 +419,18 @@ const Header2 = () => {
               } `}
               onClick={toggleMenu}
             >
-              {/* <span style={{top: '40.5px', left: '84.2344px'}} /> */}
               <span style={{ top: "10px" }} />
             </div>
           </div>
         </header>
+        <form className="d-flex d-md-none">
+          <div
+            className="form-inner border "
+            style={{ borderRadius: "5px", width: "90%", margin: "2px auto" }}
+          >
+            <input type="text" placeholder="Search your product..." />
+          </div>
+        </form>
       </div>
       <style>{`
       a{
