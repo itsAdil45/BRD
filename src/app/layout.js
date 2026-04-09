@@ -13,6 +13,8 @@ import "../../public/assets/css/style.css";
 import Footer2 from "@/components/footer/Footer2";
 import Header2 from "@/components/header/Header2";
 import ScrollTopBtn from "../components/common/ScrollTopBtn.jsx";
+import RouteLoader from "./RouteLoader";
+
 import { Toaster } from "react-hot-toast";
 import useWow from "@/customHooks/useWow";
 import Head from "next/head";
@@ -43,6 +45,7 @@ export default function RootLayout({ children }) {
         <title>CPEMS- Multi Vendor Auction and Bidding Platform</title>
       </head>
       <body>
+        <RouteLoader />
         <SessionProvider>
           <Header2 />
           <Toaster
